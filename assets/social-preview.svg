@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640" role="img" aria-label="candor — a data sufficiency and quality gate for AI agents">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640" role="img" aria-label="candor — a sufficiency gate for AI agents">
   <title>candor</title>
   <defs>
     <style>
@@ -23,9 +23,10 @@
   </g>
 
   <text class="w" x="292" y="330">candor<tspan class="a">.</tspan></text>
-  <text class="t" x="298" y="390">A data sufficiency and quality gate for AI agents.</text>
-  <text class="t" x="298" y="434">It tells an agent when the data can&#8217;t support an answer.</text>
+  <text class="t" x="298" y="386">A sufficiency gate for AI agents.</text>
+  <text class="t" x="298" y="428">Data that can&#8217;t support an answer.</text>
+  <text class="t" x="298" y="470">Specs that can&#8217;t support a build.</text>
 
-  <text class="k" x="298" y="536">ASSESS<tspan fill="#fbbf24">  ·  </tspan>VERIFY<tspan fill="#fbbf24">  ·  </tspan>IMPROVE</text>
-  <text class="k" x="298" y="576" fill="#6b7280">MCP SERVER<tspan fill="#4b5563">  ·  </tspan>CLI<tspan fill="#4b5563">  ·  </tspan>PYTHON<tspan fill="#4b5563">  ·  </tspan>NO MODEL CALLS</text>
+  <text class="k" x="298" y="548">ASSESS<tspan fill="#fbbf24">  ·  </tspan>VERIFY<tspan fill="#fbbf24">  ·  </tspan>SPEC<tspan fill="#fbbf24">  ·  </tspan>IMPROVE</text>
+  <text class="k" x="298" y="588" fill="#6b7280">MCP SERVER<tspan fill="#4b5563">  ·  </tspan>CLI<tspan fill="#4b5563">  ·  </tspan>PYTHON<tspan fill="#4b5563">  ·  </tspan>NO MODEL CALLS</text>
 </svg>
