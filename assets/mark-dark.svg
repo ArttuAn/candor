@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="candor">
+  <title>candor</title>
+  <!-- Three bars that were loaded and one that never was. The outlined bar is
+       the whole idea: a gap reads as a decline unless someone names it. -->
+  <rect x="4"  y="31" width="12" height="22" rx="3" fill="#e5e7eb"/>
+  <rect x="20" y="21" width="12" height="32" rx="3" fill="#e5e7eb"/>
+  <rect x="37.3" y="25.3" width="11.4" height="27.4" rx="2.7"
+        fill="#fbbf24" fill-opacity="0.15"
+        stroke="#fbbf24" stroke-width="2.6"/>
+  <rect x="52" y="14" width="12" height="39" rx="3" fill="#e5e7eb"/>
+  <circle cx="43" cy="9.5" r="3.4" fill="#fbbf24"/>
+  <rect x="3" y="56.5" width="61" height="3" rx="1.5" fill="#e5e7eb" opacity="0.3"/>
+</svg>

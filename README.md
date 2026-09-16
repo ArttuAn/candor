@@ -1,6 +1,35 @@
-# candor
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/logo-light.svg">
+    <img alt="candor" src="assets/logo-light.svg" width="580">
+  </picture>
+</p>
 
-**A data sufficiency and quality gate for AI agents.**
+<p align="center">
+  <em>A data sufficiency and quality gate for AI agents.</em><br>
+  It tells an agent when the data can&rsquo;t support an answer &mdash; and what would fix it.
+</p>
+
+<p align="center">
+  <a href="https://github.com/ArttuAn/candor/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/ArttuAn/candor/actions/workflows/ci.yml/badge.svg"></a>
+  <img alt="Python 3.11+" src="https://img.shields.io/badge/python-3.11%2B-3776AB?logo=python&logoColor=white">
+  <img alt="Zero dependencies" src="https://img.shields.io/badge/core-zero%20dependencies-1f2937">
+  <img alt="MCP" src="https://img.shields.io/badge/MCP-server-d97706">
+  <a href="https://github.com/astral-sh/ruff"><img alt="Ruff" src="https://img.shields.io/badge/lint-ruff-261230?logo=ruff&logoColor=white"></a>
+  <img alt="License MIT" src="https://img.shields.io/badge/license-MIT-0f766e">
+</p>
+
+<p align="center">
+  <a href="#install">Install</a> &middot;
+  <a href="#-use-it-from-a-harness-mcp">MCP</a> &middot;
+  <a href="#-use-it-from-python">Python</a> &middot;
+  <a href="#-use-it-in-ci">CI</a> &middot;
+  <a href="#-what-it-looks-for">Rules</a> &middot;
+  <a href="#-design-notes">Design notes</a>
+</p>
+
+---
 
 An agent handed a CSV will almost always produce an answer. The failure mode
 that matters isn't a wrong number — it's a *plausible* number, delivered with
@@ -47,7 +76,7 @@ violations. The defect is a month that was never loaded, sitting exactly on the
 period the question asks about. That's the shape that gets answered confidently
 and wrong.
 
-## Install
+## 📦 Install
 
 ```bash
 uv pip install "candor[mcp]"          # with the MCP server
@@ -57,7 +86,7 @@ uv pip install candor                 # library and CLI only, zero dependencies
 Python 3.11+. The core has no dependencies at all: CSV, TSV, JSON, JSONL and
 SQLite are handled with the standard library. Parquet needs the `parquet` extra.
 
-## Use it from a harness (MCP)
+## 🔌 Use it from a harness (MCP)
 
 This is the intended path. Register the server once and any MCP-capable agent —
 Claude Code, Claude Desktop, Cline, Continue, an Agent SDK loop — gets five
@@ -95,7 +124,7 @@ The server ships instructions that the client surfaces to the model:
 > has to appear in your answer, in your own words, in the body — not as a
 > footnote — and you must make none of the claims in `must_not_claim`.
 
-## Use it from Python
+## 🐍 Use it from Python
 
 ```python
 import candor
@@ -122,7 +151,7 @@ kit = candor.truth_kit("orders.csv", "Why did revenue drop in Q3 2023?")
 #  'to_make_answerable': [...], 'instruction': '...'}
 ```
 
-## Use it in CI
+## ✅ Use it in CI
 
 `candor gate` fails a build when data drifts below a standard, or when a
 question the pipeline is supposed to answer stops being answerable.
@@ -139,7 +168,7 @@ candor gate orders.csv -q "What was revenue by region last month?"
 | `2` | Insufficient / rejected — do not answer from this data |
 | `3` | The source could not be read at all |
 
-## What it looks for
+## 🔎 What it looks for
 
 Eight dimensions, scored separately, because a single number hides the thing you
 need to know. Every finding carries why it matters for answering a question, and
@@ -169,7 +198,7 @@ answers come from:
   shows up as a legitimate category in every breakdown. candor counts them
   separately from nulls and says so.
 
-## Design notes
+## 🧭 Design notes
 
 **No model call.** Question parsing is lexical and the rules are deterministic,
 so the same input gives the same verdict every run, offline, in CI, for free.
@@ -192,7 +221,7 @@ detectors check the sentence around a match before flagging it.
 **Every finding has a fix.** A finding without a remediation is a complaint;
 there's a test enforcing that too.
 
-## Development
+## 🛠 Development
 
 ```bash
 uv sync --extra mcp
@@ -209,6 +238,12 @@ uv run candor assess examples/messy_orders.csv -q "Why did revenue drop in Q3 20
 uv run candor improve examples/messy_orders.csv -q "What was revenue by region?"
 ```
 
-## Licence
+## 📄 Licence
 
 MIT
+
+---
+
+<p align="center">
+  <sub>Built because the dangerous answer is never the obviously wrong one.</sub>
+</p>
