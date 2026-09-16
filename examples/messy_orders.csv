@@ -1,0 +1,423 @@
+order_id,order_date,customer_email,region,plan,amount_eur,seats,churned,notes,source_system
+ORD-1000,2024-01-29,user0@example.com, AMER,Pro,,5,false,,salesforce
+ORD-1001,2023-11-05,user1@example.com, AMER,pro,434.61,5,true,,salesforce
+ORD-1002,17.02.2023,user2@example.com,Unknown,Pro,806.36,10,true,,salesforce
+ORD-1003,10.04.2023,user3@example.com,APAC,free,787.01,5,false,,salesforce
+ORD-1004,2023-11-13,user4@example.com,Unknown,free,579.0,1,true,Ã©levÃ© priority,salesforce
+ORD-1005,2024-05-05,user5@example.com, AMER,N/A,611.65,3,false,,salesforce
+ORD-1006,11/01/2024,user6@example.com,Unknown,pro,,-1,false,Ã©levÃ© priority,salesforce
+ORD-1007,2024-06-02,user7@example.com,Unknown,Pro,242.3,5,true,,salesforce
+ORD-1008,06/05/2024,user8@example.com,AMER,enterprise,721.87,5,true,,salesforce
+ORD-1009,2023-03-26,user9@example.com,APAC,pro,9999999.0,10,false,Ã©levÃ© priority,salesforce
+ORD-1010,2024-10-03,user10@example.com,Unknown,N/A,426.49,5,false,,salesforce
+ORD-1011,07/09/2024,,emea,N/A,250.35,3,true,,salesforce
+ORD-1012,02.10.2023,user12@example.com,EMEA,free,253.5,5,false,follow up,salesforce
+ORD-1013,2024-01-17,user13@example.com, AMER,enterprise,759.51,10,true,Ã©levÃ© priority,salesforce
+ORD-1014,2024-01-03,user14@example.com, AMER,N/A,580.81,3,true,Ã©levÃ© priority,salesforce
+ORD-1015,2023-09-19,user15@example.com,EMEA,pro,2163.57,5,false,,salesforce
+ORD-1016,2024-11-12,user16@example.com,emea,pro,127.74,2,false,,salesforce
+ORD-1017,10.07.2024,user17@example.com,Unknown,Pro,221.43,2,false,,salesforce
+ORD-1018,03/30/2023,user18@example.com,EMEA,Pro,331.29,5,true,Ã©levÃ© priority,salesforce
+ORD-1019,11/03/2024,,Unknown,pro,562.43,2,false,,salesforce
+ORD-1020,2023-10-06,user20@example.com,AMER,Pro,,-1,false,follow up,salesforce
+ORD-1021,21.10.2024,user21@example.com,EMEA,free,107.35,10,true,,salesforce
+ORD-1022,2023-06-26,user22@example.com, AMER,free,353.41,1,true,,salesforce
+ORD-1023,2023-09-15,user23@example.com, AMER,N/A,377.09,-1,false,follow up,salesforce
+ORD-1024,05.08.2024,user24@example.com,APAC,N/A,950.46,2,false,,salesforce
+ORD-1025,2024-05-03,user25@example.com,APAC,pro,325.07,2,false,,salesforce
+ORD-1026,2023-11-18,user26@example.com,emea,free,1132.35,5,false,follow up,salesforce
+ORD-1027,2023-09-20,user27@example.com,EMEA,free,9999999.0,10,false,Ã©levÃ© priority,salesforce
+ORD-1028,2023-03-07,user28@example.com,APAC,free,681.87,10,false,,salesforce
+ORD-1029,2023-04-02,user29@example.com,EMEA,N/A,361.23,1,false,,salesforce
+ORD-1030,2024-06-10,user30@example.com, AMER,Pro,246.18,2,false,,salesforce
+ORD-1031,2023-09-05,user31@example.com,EMEA,enterprise,,1,true,Ã©levÃ© priority,salesforce
+ORD-1032,2024-07-02,user32@example.com, AMER,enterprise,872.03,2,false,,salesforce
+ORD-1033,05/24/2023,user33@example.com,AMER,N/A,1690.86,3,true,,salesforce
+ORD-1034,02/16/2023,user34@example.com, AMER,enterprise,9999999.0,3,true,,salesforce
+ORD-1035,2023-09-07,user35@example.com,EMEA,pro,315.23,1,true,follow up,salesforce
+ORD-1036,2024-10-24,user36@example.com,emea,N/A,327.75,3,false,,salesforce
+ORD-1037,19.12.2023,user37@example.com,Unknown,N/A,495.5,10,true,Ã©levÃ© priority,salesforce
+ORD-1038,2023-10-25,user38@example.com,Unknown,N/A,325.85,5,false,,salesforce
+ORD-1039,2024-06-13,,Unknown,free,800.73,1,false,,salesforce
+ORD-1040,2023-09-30,user40@example.com, AMER,Pro,,2,false,,salesforce
+ORD-1041,09.01.2024,user41@example.com,Unknown,Pro,443.27,3,false,follow up,salesforce
+ORD-1042,06/23/2024,user42@example.com,EMEA,N/A,444.9,5,false,follow up,salesforce
+ORD-1043,2023-10-04,user43@example.com,APAC,pro,639.14,2,false,follow up,salesforce
+ORD-1044,2024-04-10,user44@example.com,EMEA,enterprise,,3,false,,salesforce
+ORD-1045,2023-09-20,user45@example.com, AMER,pro,876.59,5,false,,salesforce
+ORD-1046,2023-12-16,user46@example.com,APAC,free,501.52,-1,false,Ã©levÃ© priority,salesforce
+ORD-1047,2024-09-16,user47@example.com,Unknown,enterprise,553.93,10,true,,salesforce
+ORD-1048,06/29/2024,user48@example.com,Unknown,Pro,297.22,10,false,,salesforce
+ORD-1049,2023-06-21,user49@example.com,APAC,free,125.52,10,true,,salesforce
+ORD-1050,2023-04-03,user50@example.com,EMEA,free,317.78,-1,true,follow up,salesforce
+ORD-1051,2023-12-05,user51@example.com, AMER,Pro,803.88,2,false,follow up,salesforce
+ORD-1051,06/02/2024,user52@example.com, AMER,free,1131.17,2,true,,salesforce
+ORD-1053,2023-06-08,user53@example.com,AMER,pro,444.32,1,true,,salesforce
+ORD-1054,28.10.2023,user54@example.com,Unknown,free,2050.25,1,true,,salesforce
+ORD-1055,05.01.2024,user55@example.com,APAC,enterprise,9999999.0,2,false,Ã©levÃ© priority,salesforce
+ORD-1056,30.10.2023,user56@example.com,AMER,pro,605.18,-1,false,,salesforce
+ORD-1057,10/22/2023,user57@example.com,APAC,N/A,,5,true,,salesforce
+ORD-1058,2023-09-18,user58@example.com, AMER,Pro,377.99,5,false,,salesforce
+ORD-1059,2024-11-02,user59@example.com,APAC,pro,270.36,2,false,,salesforce
+ORD-1060,09.09.2023,user60@example.com,EMEA,pro,580.08,3,false,,salesforce
+ORD-1061,2024-09-28,,Unknown,free,198.08,10,false,,salesforce
+ORD-1062,2024-01-29,user62@example.com,AMER,pro,749.82,5,true,,salesforce
+ORD-1063,2023-11-22,user63@example.com,Unknown,enterprise,297.82,3,true,Ã©levÃ© priority,salesforce
+ORD-1064,2023-03-08,user64@example.com,APAC,free,665.94,2,false,,salesforce
+ORD-1065,2023-01-09,user65@example.com,EMEA,N/A,502.19,2,true,follow up,salesforce
+ORD-1066,2023-03-08,,EMEA,enterprise,381.77,2,true,follow up,salesforce
+ORD-1067,07/26/2024,user67@example.com, AMER,pro,240.5,3,false,,salesforce
+ORD-1068,2024-10-04,user68@example.com,emea,enterprise,207.35,10,true,,salesforce
+ORD-1069,03/08/2023,,AMER,pro,256.72,5,true,follow up,salesforce
+ORD-1070,2024-03-20,user70@example.com,emea,pro,791.77,2,false,Ã©levÃ© priority,salesforce
+ORD-1071,2023-11-25,user71@example.com,emea,pro,105.67,3,true,Ã©levÃ© priority,salesforce
+ORD-1072,2023-09-28,,EMEA,free,845.89,1,false,,salesforce
+ORD-1073,11.04.2024,user73@example.com,APAC,enterprise,145.86,1,false,Ã©levÃ© priority,salesforce
+ORD-1074,03/03/2024,user74@example.com,Unknown,free,173.35,1,false,,salesforce
+ORD-1075,2024-05-10,user75@example.com,EMEA,pro,845.96,-1,false,,salesforce
+ORD-1076,10.10.2024,,AMER,free,202.14,2,false,,salesforce
+ORD-1077,02/14/2023,user77@example.com,Unknown,Pro,210.87,2,false,Ã©levÃ© priority,salesforce
+ORD-1078,09/20/2023,user78@example.com,EMEA,Pro,231.25,-1,true,,salesforce
+ORD-1079,2024-09-29,user79@example.com,APAC,free,567.34,2,false,follow up,salesforce
+ORD-1080,03/14/2024,user80@example.com,AMER,N/A,9999999.0,5,true,follow up,salesforce
+ORD-1081,2024-04-16,user81@example.com,Unknown,pro,,2,true,,salesforce
+ORD-1082,2024-08-08,user82@example.com,EMEA,N/A,117.55,1,true,,salesforce
+ORD-1083,2024-07-19,user83@example.com,AMER,Pro,174.29,5,true,Ã©levÃ© priority,salesforce
+ORD-1084,28.11.2023,user84@example.com,APAC,enterprise,408.34,2,false,,salesforce
+ORD-1085,2024-08-28,user85@example.com,EMEA,enterprise,540.35,-1,false,,salesforce
+ORD-1086,11/30/2023,user86@example.com,EMEA,enterprise,178.59,3,false,Ã©levÃ© priority,salesforce
+ORD-1087,2024-01-18,user87@example.com,APAC,pro,623.74,2,true,,salesforce
+ORD-1088,2023-02-25,user88@example.com,APAC,N/A,460.5,3,false,,salesforce
+ORD-1089,2023-05-18,user89@example.com,Unknown,enterprise,890.82,3,true,,salesforce
+ORD-1090,2024-09-29,user90@example.com,emea,pro,,10,true,follow up,salesforce
+ORD-1091,2023-09-10,user91@example.com, AMER,N/A,99.51,-1,false,Ã©levÃ© priority,salesforce
+ORD-1092,28.06.2023,user92@example.com,Unknown,N/A,,5,false,,salesforce
+ORD-1093,2024-06-09,user93@example.com,Unknown,enterprise,264.97,3,false,Ã©levÃ© priority,salesforce
+ORD-1094,2023-11-30,user94@example.com,AMER,enterprise,98.1,5,false,follow up,salesforce
+ORD-1095,2024-08-28,user95@example.com,emea,free,964.74,1,true,,salesforce
+ORD-1096,2023-02-03,user96@example.com,EMEA,pro,98.59,-1,true,,salesforce
+ORD-1097,2023-02-17,user97@example.com,AMER,pro,463.36,2,true,,salesforce
+ORD-1098,2023-02-05,,Unknown,Pro,1353.92,3,false,,salesforce
+ORD-1099,2023-01-22,user99@example.com, AMER,N/A,253.3,3,true,follow up,salesforce
+ORD-1100,02/01/2023,user100@example.com,Unknown,pro,415.03,3,true,follow up,salesforce
+ORD-1100,02.01.2023,user101@example.com,AMER,Pro,72.28,10,false,Ã©levÃ© priority,salesforce
+ORD-1102,25.11.2023,user102@example.com,EMEA,pro,944.34,-1,true,,salesforce
+ORD-1103,2024-03-02,user103@example.com,EMEA,enterprise,322.53,3,false,Ã©levÃ© priority,salesforce
+ORD-1104,2024-07-29,user104@example.com,Unknown,N/A,96.77,3,false,Ã©levÃ© priority,salesforce
+ORD-1105,06/09/2023,user105@example.com, AMER,Pro,955.51,5,true,Ã©levÃ© priority,salesforce
+ORD-1106,2023-09-16,user106@example.com,emea,enterprise,161.14,3,true,,salesforce
+ORD-1107,2024-02-02,user107@example.com,APAC,free,528.13,1,true,,salesforce
+ORD-1108,10/01/2023,user108@example.com,Unknown,enterprise,383.69,2,false,Ã©levÃ© priority,salesforce
+ORD-1109,2024-04-21,user109@example.com,Unknown,N/A,322.01,-1,true,,salesforce
+ORD-1110,06/10/2024,user110@example.com,Unknown,Pro,202.28,5,false,follow up,salesforce
+ORD-1111,21.01.2023,user111@example.com,APAC,pro,1120.37,5,true,,salesforce
+ORD-1112,16.11.2023,user112@example.com, AMER,free,103.09,-1,false,Ã©levÃ© priority,salesforce
+ORD-1113,2023-01-17,user113@example.com,AMER,N/A,424.32,1,false,,salesforce
+ORD-1114,2023-11-17,user114@example.com,Unknown,enterprise,339.41,1,true,,salesforce
+ORD-1115,17.04.2024,,Unknown,Pro,1307.5,10,true,,salesforce
+ORD-1116,02/28/2024,user116@example.com,APAC,Pro,379.16,5,false,follow up,salesforce
+ORD-1117,09/10/2023,user117@example.com,Unknown,pro,271.05,3,true,,salesforce
+ORD-1118,2024-04-01,user118@example.com,APAC,N/A,,1,true,,salesforce
+ORD-1119,2023-12-29,user119@example.com,emea,Pro,573.81,10,true,Ã©levÃ© priority,salesforce
+ORD-1120,2024-11-15,user120@example.com,Unknown,Pro,3566.32,-1,false,,salesforce
+ORD-1121,2024-09-22,,AMER,Pro,264.53,2,false,,salesforce
+ORD-1122,06.09.2024,user122@example.com,APAC,free,971.68,-1,true,,salesforce
+ORD-1123,2024-03-07,user123@example.com,emea,free,643.85,3,true,,salesforce
+ORD-1124,02/16/2024,user124@example.com,APAC,N/A,,3,false,,salesforce
+ORD-1125,07/21/2024,,emea,enterprise,881.17,2,true,,salesforce
+ORD-1126,15.04.2024,,emea,free,1292.22,-1,true,Ã©levÃ© priority,salesforce
+ORD-1127,10.09.2024,user127@example.com,EMEA,Pro,,-1,false,,salesforce
+ORD-1128,2023-04-14,,emea,enterprise,968.75,3,false,,salesforce
+ORD-1129,2024-05-08,, AMER,N/A,,1,false,Ã©levÃ© priority,salesforce
+ORD-1130,04/21/2024,,AMER,Pro,522.68,-1,true,follow up,salesforce
+ORD-1131,2023-01-05,user131@example.com,emea,free,,-1,true,follow up,salesforce
+ORD-1132,2023-09-11,user132@example.com,APAC,N/A,194.75,5,false,,salesforce
+ORD-1133,2023-02-02,user133@example.com,AMER,N/A,,3,false,follow up,salesforce
+ORD-1134,2023-06-20,user134@example.com, AMER,enterprise,890.72,1,false,Ã©levÃ© priority,salesforce
+ORD-1135,2023-01-16,user135@example.com,Unknown,free,493.12,2,false,,salesforce
+ORD-1136,2023-01-02,user136@example.com,EMEA,enterprise,229.72,10,true,,salesforce
+ORD-1137,09/14/2024,user137@example.com,Unknown,Pro,320.63,1,false,follow up,salesforce
+ORD-1138,2023-10-01,user138@example.com,APAC,pro,454.72,10,false,Ã©levÃ© priority,salesforce
+ORD-1139,01/26/2024,user139@example.com,APAC,enterprise,407.73,3,false,Ã©levÃ© priority,salesforce
+ORD-1140,2023-06-02,user140@example.com, AMER,pro,332.49,10,true,,salesforce
+ORD-1141,2023-02-04,user141@example.com,AMER,N/A,386.3,2,false,,salesforce
+ORD-1142,2024-02-13,user142@example.com,Unknown,free,1201.95,1,false,,salesforce
+ORD-1143,2023-04-03,user143@example.com,emea,free,291.64,3,true,,salesforce
+ORD-1144,2023-06-26,user144@example.com, AMER,free,,2,false,,salesforce
+ORD-1145,2023-09-23,user145@example.com,AMER,pro,502.98,5,true,follow up,salesforce
+ORD-1146,2023-11-03,user146@example.com,EMEA,N/A,243.71,-1,true,follow up,salesforce
+ORD-1147,04/10/2023,user147@example.com,AMER,pro,1427.85,2,false,,salesforce
+ORD-1148,2023-02-28,user148@example.com,AMER,Pro,778.02,3,false,,salesforce
+ORD-1149,2023-06-21,user149@example.com,EMEA,Pro,396.19,3,true,,salesforce
+ORD-1150,2023-09-26,user150@example.com,AMER,Pro,,-1,false,,salesforce
+ORD-1150,01/17/2023,user151@example.com, AMER,enterprise,764.57,5,true,follow up,salesforce
+ORD-1152,2023-10-13,user152@example.com,emea,N/A,,1,false,,salesforce
+ORD-1153,2023-06-29,user153@example.com,EMEA,pro,89.21,10,false,,salesforce
+ORD-1154,2024-08-15,,AMER,Pro,96.5,3,true,,salesforce
+ORD-1155,2024-09-30,user155@example.com,EMEA,pro,832.53,2,false,follow up,salesforce
+ORD-1156,2024-10-14,, AMER,Pro,,1,true,Ã©levÃ© priority,salesforce
+ORD-1157,2023-09-06,,Unknown,Pro,194.9,10,false,Ã©levÃ© priority,salesforce
+ORD-1158,11/03/2023,user158@example.com,APAC,pro,551.17,5,true,Ã©levÃ© priority,salesforce
+ORD-1159,2024-10-30,user159@example.com,EMEA,free,721.35,10,true,follow up,salesforce
+ORD-1160,2023-02-23,user160@example.com,APAC,free,301.36,1,false,Ã©levÃ© priority,salesforce
+ORD-1161,2023-05-31,user161@example.com,EMEA,enterprise,222.42,10,true,,salesforce
+ORD-1162,05/23/2023,user162@example.com,EMEA,N/A,525.65,1,true,follow up,salesforce
+ORD-1163,2023-11-01,user163@example.com, AMER,enterprise,265.12,10,true,follow up,salesforce
+ORD-1164,07.05.2023,user164@example.com,EMEA,N/A,197.12,5,true,follow up,salesforce
+ORD-1165,26.09.2023,user165@example.com,APAC,pro,689.19,2,true,Ã©levÃ© priority,salesforce
+ORD-1166,09/13/2024,user166@example.com,APAC,N/A,1173.62,3,false,,salesforce
+ORD-1167,2023-12-31,user167@example.com,EMEA,N/A,628.83,5,false,,salesforce
+ORD-1168,2024-08-18,user168@example.com, AMER,enterprise,1120.03,10,true,follow up,salesforce
+ORD-1169,2023-12-04,,AMER,N/A,353.15,3,true,follow up,salesforce
+ORD-1170,06/09/2024,user170@example.com,Unknown,enterprise,,-1,false,follow up,salesforce
+ORD-1171,2024-05-31,user171@example.com,EMEA,enterprise,216.43,10,true,,salesforce
+ORD-1172,09/29/2023,user172@example.com,AMER,N/A,876.54,-1,false,follow up,salesforce
+ORD-1173,2024-06-21,user173@example.com, AMER,free,378.01,10,true,,salesforce
+ORD-1174,05/08/2024,user174@example.com,Unknown,pro,225.84,3,false,,salesforce
+ORD-1175,16.01.2024,user175@example.com, AMER,free,110.61,10,false,Ã©levÃ© priority,salesforce
+ORD-1176,02.10.2023,, AMER,pro,1010.31,1,true,,salesforce
+ORD-1176,2024-09-20,,emea,free,1043.2,10,false,Ã©levÃ© priority,salesforce
+ORD-1178,2024-08-11,user178@example.com,EMEA,pro,479.88,2,false,follow up,salesforce
+ORD-1179,11/20/2024,user179@example.com,EMEA,N/A,,2,false,Ã©levÃ© priority,salesforce
+ORD-1180,2024-04-01,user180@example.com,EMEA,Pro,6694.18,2,false,,salesforce
+ORD-1181,2024-06-12,,Unknown,free,347.32,10,true,follow up,salesforce
+ORD-1182,01/14/2024,user182@example.com,APAC,free,1095.51,3,false,Ã©levÃ© priority,salesforce
+ORD-1183,2024-03-09,user183@example.com,AMER,enterprise,69.28,5,true,follow up,salesforce
+ORD-1184,2023-12-19,,APAC,N/A,568.12,2,false,follow up,salesforce
+ORD-1185,2023-11-04,user185@example.com,APAC,free,320.1,2,false,,salesforce
+ORD-1186,26.11.2023,user186@example.com,emea,Pro,1525.03,1,true,Ã©levÃ© priority,salesforce
+ORD-1187,12/05/2023,user187@example.com,EMEA,pro,1040.1,3,false,,salesforce
+ORD-1188,2023-03-09,user188@example.com,AMER,Pro,182.2,2,true,,salesforce
+ORD-1189,02/26/2024,user189@example.com, AMER,Pro,94.35,1,false,,salesforce
+ORD-1190,2024-11-16,user190@example.com,Unknown,Pro,272.79,2,false,Ã©levÃ© priority,salesforce
+ORD-1191,11/19/2023,user191@example.com,Unknown,enterprise,699.07,10,true,,salesforce
+ORD-1192,2023-04-24,,Unknown,free,669.4,10,true,,salesforce
+ORD-1193,2024-08-24,user193@example.com,Unknown,free,357.99,-1,true,follow up,salesforce
+ORD-1194,2024-08-09,user194@example.com,emea,N/A,396.33,-1,true,Ã©levÃ© priority,salesforce
+ORD-1195,2023-11-25,user195@example.com,AMER,free,320.2,2,true,Ã©levÃ© priority,salesforce
+ORD-1196,2024-06-01,user196@example.com, AMER,Pro,1014.67,1,false,,salesforce
+ORD-1196,08.06.2023,user197@example.com,EMEA,pro,342.96,3,true,,salesforce
+ORD-1198,01/14/2024,,AMER,free,338.67,-1,false,Ã©levÃ© priority,salesforce
+ORD-1199,2023-11-29,,APAC,N/A,374.64,-1,false,,salesforce
+ORD-1200,2023-03-22,user200@example.com,Unknown,Pro,341.0,-1,false,Ã©levÃ© priority,salesforce
+ORD-1201,02/01/2024,user201@example.com,emea,pro,,10,false,,salesforce
+ORD-1202,10/11/2023,user202@example.com,emea,Pro,272.43,5,false,,salesforce
+ORD-1203,02/10/2023,user203@example.com, AMER,free,389.1,1,true,Ã©levÃ© priority,salesforce
+ORD-1204,2024-05-08,user204@example.com, AMER,Pro,9999999.0,10,false,Ã©levÃ© priority,salesforce
+ORD-1205,06/17/2024,user205@example.com,AMER,Pro,749.62,3,true,,salesforce
+ORD-1206,10/17/2023,user206@example.com,APAC,N/A,548.87,5,false,,salesforce
+ORD-1207,2023-04-27,, AMER,enterprise,434.58,2,false,,salesforce
+ORD-1208,08.09.2024,user208@example.com,Unknown,pro,1120.0,2,true,Ã©levÃ© priority,salesforce
+ORD-1209,04/15/2023,user209@example.com,EMEA,Pro,850.08,10,true,follow up,salesforce
+ORD-1210,2023-11-01,user210@example.com,Unknown,Pro,337.68,1,true,Ã©levÃ© priority,salesforce
+ORD-1211,2023-04-28,user211@example.com,APAC,pro,67.37,10,false,follow up,salesforce
+ORD-1212,14.02.2023,,Unknown,Pro,295.24,2,false,,salesforce
+ORD-1213,10/19/2024,user213@example.com,emea,N/A,153.08,10,false,follow up,salesforce
+ORD-1214,2023-01-15,user214@example.com,EMEA,pro,312.69,-1,false,follow up,salesforce
+ORD-1215,06/12/2023,user215@example.com,emea,enterprise,127.49,10,true,,salesforce
+ORD-1216,2023-06-23,user216@example.com,APAC,N/A,643.19,2,true,,salesforce
+ORD-1217,16.06.2024,user217@example.com, AMER,N/A,557.03,2,true,Ã©levÃ© priority,salesforce
+ORD-1218,2023-04-08,user218@example.com,emea,Pro,1125.57,3,false,,salesforce
+ORD-1219,2024-08-06,user219@example.com,APAC,free,255.46,2,true,,salesforce
+ORD-1220,2023-06-04,user220@example.com, AMER,pro,599.04,-1,false,,salesforce
+ORD-1221,09.10.2024,user221@example.com,APAC,free,195.81,-1,false,,salesforce
+ORD-1221,2024-07-12,user222@example.com,APAC,Pro,859.56,2,true,follow up,salesforce
+ORD-1223,2024-06-04,user223@example.com,EMEA,Pro,855.39,1,true,Ã©levÃ© priority,salesforce
+ORD-1224,2024-02-16,,AMER,free,314.21,3,true,,salesforce
+ORD-1225,2024-05-01,user225@example.com,AMER,pro,,3,false,,salesforce
+ORD-1225,02.05.2024,user226@example.com, AMER,pro,2314.82,3,false,,salesforce
+ORD-1227,05.09.2024,user227@example.com, AMER,enterprise,730.07,5,true,,salesforce
+ORD-1228,09/16/2024,user228@example.com, AMER,free,458.26,3,true,,salesforce
+ORD-1229,2024-04-17,user229@example.com, AMER,enterprise,129.65,2,true,Ã©levÃ© priority,salesforce
+ORD-1230,2023-01-30,user230@example.com,APAC,free,667.76,3,true,,salesforce
+ORD-1231,2023-01-16,user231@example.com,AMER,Pro,,1,false,follow up,salesforce
+ORD-1232,2023-11-06,user232@example.com,AMER,Pro,299.86,2,false,,salesforce
+ORD-1233,2023-05-20,user233@example.com,Unknown,N/A,258.16,5,true,Ã©levÃ© priority,salesforce
+ORD-1234,2023-02-23,user234@example.com,AMER,Pro,2497.63,3,true,,salesforce
+ORD-1235,2023-06-05,user235@example.com,AMER,free,196.06,3,false,,salesforce
+ORD-1236,03.02.2023,user236@example.com,emea,N/A,69.96,1,true,,salesforce
+ORD-1237,2024-01-22,user237@example.com,emea,N/A,395.41,1,false,follow up,salesforce
+ORD-1238,2023-03-21,user238@example.com,APAC,N/A,940.49,5,false,follow up,salesforce
+ORD-1239,2024-05-09,user239@example.com,emea,pro,440.96,10,false,Ã©levÃ© priority,salesforce
+ORD-1240,2024-03-24,,Unknown,pro,1521.57,10,false,follow up,salesforce
+ORD-1241,2024-09-16,user241@example.com,APAC,N/A,349.1,5,true,follow up,salesforce
+ORD-1242,2024-03-01,user242@example.com,Unknown,N/A,296.35,10,false,,salesforce
+ORD-1243,2024-06-30,user243@example.com, AMER,enterprise,427.44,10,true,,salesforce
+ORD-1244,2023-11-03,user244@example.com,Unknown,pro,98.45,3,false,,salesforce
+ORD-1245,2024-04-26,user245@example.com,APAC,free,629.57,3,false,,salesforce
+ORD-1246,2024-06-02,user246@example.com,Unknown,Pro,353.07,10,true,Ã©levÃ© priority,salesforce
+ORD-1247,17.03.2024,user247@example.com,EMEA,N/A,9999999.0,-1,false,,salesforce
+ORD-1248,2023-11-20,,emea,free,227.47,3,false,,salesforce
+ORD-1249,05/30/2024,user249@example.com,APAC,enterprise,213.97,10,true,Ã©levÃ© priority,salesforce
+ORD-1250,16.09.2023,user250@example.com,AMER,free,238.92,5,true,,salesforce
+ORD-1251,31.10.2024,user251@example.com,EMEA,free,366.65,2,true,,salesforce
+ORD-1252,09/25/2023,user252@example.com,AMER,pro,871.69,1,true,,salesforce
+ORD-1253,2024-07-24,user253@example.com,APAC,free,741.87,10,false,Ã©levÃ© priority,salesforce
+ORD-1253,05/24/2023,user254@example.com,APAC,N/A,194.25,3,false,,salesforce
+ORD-1255,03.01.2024,user255@example.com,AMER,free,113.93,3,false,,salesforce
+ORD-1256,2023-05-15,user256@example.com,emea,enterprise,127.18,3,true,follow up,salesforce
+ORD-1257,2024-09-23,user257@example.com, AMER,free,203.19,-1,false,,salesforce
+ORD-1258,2023-09-28,user258@example.com,EMEA,N/A,222.02,2,false,,salesforce
+ORD-1259,2023-12-30,user259@example.com,AMER,pro,426.76,1,true,follow up,salesforce
+ORD-1260,2023-10-19,user260@example.com,emea,pro,670.18,5,false,,salesforce
+ORD-1261,2024-10-20,user261@example.com,emea,Pro,1109.88,-1,true,follow up,salesforce
+ORD-1262,2023-02-03,,AMER,Pro,255.04,5,false,follow up,salesforce
+ORD-1263,2023-04-28,user263@example.com, AMER,pro,674.22,3,true,follow up,salesforce
+ORD-1264,2023-04-06,,emea,free,345.86,2,false,,salesforce
+ORD-1265,18.10.2024,user265@example.com,AMER,Pro,245.98,3,true,,salesforce
+ORD-1266,2024-01-03,user266@example.com,AMER,free,,1,true,follow up,salesforce
+ORD-1267,05/16/2023,user267@example.com,emea,pro,475.99,-1,false,,salesforce
+ORD-1268,2023-06-02,user268@example.com,emea,N/A,142.17,10,false,,salesforce
+ORD-1269,2023-09-22,user269@example.com, AMER,Pro,341.76,1,true,,salesforce
+ORD-1270,16.07.2024,user270@example.com,EMEA,free,85.81,10,true,,salesforce
+ORD-1271,2024-10-07,user271@example.com,Unknown,pro,104.22,1,false,,salesforce
+ORD-1272,2023-02-12,user272@example.com,AMER,N/A,683.09,1,false,follow up,salesforce
+ORD-1273,2024-04-23,user273@example.com,APAC,Pro,190.82,2,false,,salesforce
+ORD-1274,01/03/2023,user274@example.com,EMEA,Pro,105.93,1,false,follow up,salesforce
+ORD-1275,2023-04-05,user275@example.com,APAC,enterprise,718.87,-1,false,Ã©levÃ© priority,salesforce
+ORD-1276,06/18/2023,user276@example.com, AMER,N/A,261.13,-1,true,,salesforce
+ORD-1277,2023-11-17,user277@example.com,Unknown,pro,169.87,5,false,follow up,salesforce
+ORD-1278,2024-04-22,user278@example.com,AMER,enterprise,,5,true,,salesforce
+ORD-1279,07/02/2024,,AMER,free,338.75,3,false,,salesforce
+ORD-1280,2023-12-06,user280@example.com,Unknown,pro,661.71,2,false,,salesforce
+ORD-1281,2024-02-07,user281@example.com,AMER,enterprise,316.25,10,true,,salesforce
+ORD-1282,07.04.2024,user282@example.com,Unknown,pro,196.15,-1,false,,salesforce
+ORD-1283,11/18/2023,user283@example.com,Unknown,free,85.79,-1,true,follow up,salesforce
+ORD-1284,2024-07-21,user284@example.com, AMER,free,,3,false,,salesforce
+ORD-1285,2023-01-08,user285@example.com,Unknown,N/A,123.61,3,true,,salesforce
+ORD-1286,2024-09-11,user286@example.com,Unknown,enterprise,1149.1,3,false,,salesforce
+ORD-1287,10/12/2024,user287@example.com,Unknown,N/A,316.16,3,true,Ã©levÃ© priority,salesforce
+ORD-1288,01/02/2024,user288@example.com,AMER,Pro,730.9,5,false,,salesforce
+ORD-1289,2023-11-25,user289@example.com, AMER,free,318.36,5,true,,salesforce
+ORD-1290,2023-02-15,user290@example.com,EMEA,enterprise,209.87,-1,false,Ã©levÃ© priority,salesforce
+ORD-1291,2023-12-24,user291@example.com,APAC,N/A,95.37,3,true,,salesforce
+ORD-1292,2024-09-15,,APAC,Pro,1189.98,-1,true,follow up,salesforce
+ORD-1293,2024-04-10,user293@example.com,emea,N/A,306.6,5,false,,salesforce
+ORD-1294,2023-10-08,user294@example.com,Unknown,Pro,460.61,-1,true,Ã©levÃ© priority,salesforce
+ORD-1295,2023-05-08,user295@example.com,Unknown,free,1414.43,3,true,Ã©levÃ© priority,salesforce
+ORD-1296,12.11.2024,user296@example.com,EMEA,enterprise,,10,true,,salesforce
+ORD-1297,2024-01-30,user297@example.com,EMEA,pro,203.59,5,true,follow up,salesforce
+ORD-1298,2023-10-19,user298@example.com,emea,enterprise,528.07,10,true,,salesforce
+ORD-1299,2023-06-27,user299@example.com,EMEA,N/A,722.5,5,false,,salesforce
+ORD-1300,2023-02-26,user300@example.com,emea,free,1037.11,-1,false,,salesforce
+ORD-1301,16.02.2024,user301@example.com, AMER,pro,197.81,2,true,,salesforce
+ORD-1302,26.09.2023,user302@example.com,EMEA,pro,109.1,5,true,Ã©levÃ© priority,salesforce
+ORD-1303,29.11.2023,user303@example.com,EMEA,Pro,318.2,5,true,follow up,salesforce
+ORD-1304,2023-04-15,user304@example.com,APAC,enterprise,213.16,2,true,Ã©levÃ© priority,salesforce
+ORD-1304,2024-09-30,user305@example.com,Unknown,enterprise,409.02,10,false,follow up,salesforce
+ORD-1305,06/14/2023,user306@example.com,EMEA,free,156.57,2,true,,salesforce
+ORD-1307,13.02.2024,,emea,enterprise,469.62,1,true,Ã©levÃ© priority,salesforce
+ORD-1308,2023-05-10,user308@example.com,EMEA,N/A,332.85,1,false,,salesforce
+ORD-1309,2024-04-16,,AMER,N/A,706.99,-1,true,,salesforce
+ORD-1310,01/06/2023,user310@example.com,emea,pro,575.92,2,true,,salesforce
+ORD-1311,2024-06-23,, AMER,N/A,41.0,3,true,,salesforce
+ORD-1312,2024-06-25,,emea,N/A,207.06,10,false,,salesforce
+ORD-1313,08/07/2024,user313@example.com, AMER,N/A,,1,false,follow up,salesforce
+ORD-1314,2024-04-13,user314@example.com,emea,pro,447.58,-1,true,follow up,salesforce
+ORD-1315,24.04.2023,user315@example.com,EMEA,pro,322.66,3,false,,salesforce
+ORD-1316,06/01/2023,user316@example.com, AMER,N/A,779.24,-1,true,,salesforce
+ORD-1317,2023-03-02,, AMER,enterprise,528.44,-1,true,,salesforce
+ORD-1318,2024-01-05,user318@example.com,Unknown,free,141.47,3,false,,salesforce
+ORD-1319,01/14/2023,user319@example.com,EMEA,Pro,436.49,1,true,,salesforce
+ORD-1320,2023-02-06,user320@example.com,emea,N/A,,-1,true,follow up,salesforce
+ORD-1321,2024-08-16,user321@example.com,AMER,pro,522.91,2,false,Ã©levÃ© priority,salesforce
+ORD-1321,2023-06-20,user322@example.com,emea,enterprise,640.52,-1,true,,salesforce
+ORD-1323,2024-11-05,,APAC,pro,592.47,1,false,Ã©levÃ© priority,salesforce
+ORD-1324,12/09/2023,user324@example.com,AMER,pro,246.85,5,false,,salesforce
+ORD-1325,2023-09-30,user325@example.com,APAC,enterprise,197.67,2,true,,salesforce
+ORD-1326,11.06.2023,user326@example.com,EMEA,free,284.24,1,true,,salesforce
+ORD-1327,2023-03-08,user327@example.com,APAC,Pro,205.46,1,true,,salesforce
+ORD-1328,12/21/2023,user328@example.com,AMER,enterprise,2438.01,1,true,follow up,salesforce
+ORD-1329,2024-03-16,user329@example.com,AMER,pro,228.68,5,false,,salesforce
+ORD-1330,10/26/2023,user330@example.com,APAC,N/A,,10,true,follow up,salesforce
+ORD-1331,11.10.2023,, AMER,Pro,1035.44,3,true,,salesforce
+ORD-1332,03/27/2023,user332@example.com,emea,enterprise,330.45,3,true,,salesforce
+ORD-1333,07/02/2024,user333@example.com,Unknown,free,204.57,1,true,follow up,salesforce
+ORD-1334,2024-11-12,user334@example.com,APAC,Pro,514.2,1,false,,salesforce
+ORD-1335,2024-06-06,user335@example.com,APAC,N/A,790.09,1,false,,salesforce
+ORD-1336,2023-06-19,user336@example.com,Unknown,free,277.9,2,true,,salesforce
+ORD-1337,2024-06-27,user337@example.com,EMEA,free,120.32,5,true,Ã©levÃ© priority,salesforce
+ORD-1338,2024-03-20,user338@example.com, AMER,pro,533.17,5,true,,salesforce
+ORD-1339,2024-08-19,user339@example.com, AMER,free,1079.94,3,true,,salesforce
+ORD-1340,12/04/2023,user340@example.com,EMEA,enterprise,150.63,2,true,follow up,salesforce
+ORD-1341,17.03.2023,user341@example.com,AMER,Pro,316.86,10,false,Ã©levÃ© priority,salesforce
+ORD-1342,2024-09-25,user342@example.com,APAC,Pro,325.25,10,false,,salesforce
+ORD-1343,28.02.2023,user343@example.com,APAC,Pro,554.35,3,true,follow up,salesforce
+ORD-1344,2023-04-02,user344@example.com,Unknown,enterprise,444.74,5,false,,salesforce
+ORD-1345,2023-10-17,user345@example.com,AMER,enterprise,453.73,3,false,follow up,salesforce
+ORD-1346,2024-01-20,user346@example.com,EMEA,enterprise,1623.74,-1,true,,salesforce
+ORD-1347,2024-10-30,,AMER,N/A,,1,false,Ã©levÃ© priority,salesforce
+ORD-1348,2023-12-07,user348@example.com,Unknown,Pro,,1,true,,salesforce
+ORD-1349,2023-09-23,user349@example.com,APAC,enterprise,,1,false,,salesforce
+ORD-1350,2023-11-30,user350@example.com, AMER,pro,856.21,-1,false,follow up,salesforce
+ORD-1351,2023-12-31,user351@example.com,emea,free,64.67,2,true,follow up,salesforce
+ORD-1352,10/02/2024,user352@example.com,emea,enterprise,218.1,10,false,,salesforce
+ORD-1353,2023-02-01,user353@example.com, AMER,Pro,599.0,2,false,,salesforce
+ORD-1354,2023-05-15,user354@example.com,Unknown,enterprise,131.74,10,false,,salesforce
+ORD-1355,2024-11-16,user355@example.com,emea,enterprise,412.49,10,false,follow up,salesforce
+ORD-1356,2024-08-26,user356@example.com,APAC,N/A,615.8,3,false,follow up,salesforce
+ORD-1357,18.03.2024,,AMER,pro,147.35,3,true,,salesforce
+ORD-1358,2024-09-24,user358@example.com,Unknown,pro,1677.03,-1,true,,salesforce
+ORD-1359,2023-12-23,user359@example.com,AMER,Pro,462.87,5,false,,salesforce
+ORD-1360,2024-03-09,user360@example.com,Unknown,free,1086.27,2,false,follow up,salesforce
+ORD-1361,2024-04-09,, AMER,enterprise,583.46,1,false,Ã©levÃ© priority,salesforce
+ORD-1362,2024-06-26,user362@example.com,EMEA,pro,156.63,10,false,,salesforce
+ORD-1363,19.11.2023,user363@example.com,AMER,free,49.2,2,true,follow up,salesforce
+ORD-1364,2024-10-04,user364@example.com,emea,enterprise,1370.11,-1,false,follow up,salesforce
+ORD-1365,2024-05-24,user365@example.com,emea,enterprise,135.49,2,true,Ã©levÃ© priority,salesforce
+ORD-1366,2024-06-12,user366@example.com,APAC,Pro,,1,false,,salesforce
+ORD-1367,2023-01-27,user367@example.com,Unknown,free,253.82,5,false,,salesforce
+ORD-1368,10/14/2024,user368@example.com,EMEA,N/A,275.83,10,true,follow up,salesforce
+ORD-1369,06/02/2024,user369@example.com,EMEA,N/A,,10,false,,salesforce
+ORD-1370,05/15/2023,user370@example.com, AMER,pro,223.26,-1,false,,salesforce
+ORD-1371,2024-03-27,user371@example.com,emea,free,844.61,10,true,,salesforce
+ORD-1372,11/12/2024,user372@example.com, AMER,enterprise,,1,true,Ã©levÃ© priority,salesforce
+ORD-1373,24.01.2023,user373@example.com,emea,N/A,2180.34,2,false,,salesforce
+ORD-1374,2024-05-11,user374@example.com,AMER,pro,487.44,1,false,,salesforce
+ORD-1375,01.11.2023,user375@example.com,emea,N/A,201.56,1,false,Ã©levÃ© priority,salesforce
+ORD-1376,2023-10-11,,EMEA,pro,898.97,10,false,,salesforce
+ORD-1377,01/25/2024,user377@example.com,emea,Pro,226.96,5,false,Ã©levÃ© priority,salesforce
+ORD-1378,2024-05-23,user378@example.com,EMEA,N/A,197.5,5,false,follow up,salesforce
+ORD-1379,10/30/2024,user379@example.com, AMER,Pro,383.32,3,false,,salesforce
+ORD-1380,2024-04-20,user380@example.com,emea,free,284.76,10,true,,salesforce
+ORD-1381,2024-07-04,user381@example.com,emea,N/A,420.93,-1,true,,salesforce
+ORD-1382,03/12/2024,user382@example.com, AMER,N/A,1068.7,2,false,,salesforce
+ORD-1383,2023-05-20,user383@example.com,EMEA,enterprise,921.23,3,false,,salesforce
+ORD-1384,2024-02-07,user384@example.com,AMER,pro,271.41,-1,true,,salesforce
+ORD-1384,2024-02-07,user385@example.com,EMEA,Pro,682.21,2,true,,salesforce
+ORD-1386,2024-05-24,user386@example.com,emea,pro,135.91,-1,false,follow up,salesforce
+ORD-1387,2023-04-06,user387@example.com, AMER,enterprise,873.76,2,false,,salesforce
+ORD-1388,2024-05-21,user388@example.com,Unknown,Pro,330.13,2,false,,salesforce
+ORD-1389,02.06.2024,user389@example.com,EMEA,free,2377.63,1,false,follow up,salesforce
+ORD-1390,2024-08-08,user390@example.com,EMEA,N/A,444.67,-1,true,,salesforce
+ORD-1391,2024-05-01,user391@example.com, AMER,Pro,574.27,5,true,,salesforce
+ORD-1392,06.10.2023,user392@example.com,emea,N/A,589.04,5,false,,salesforce
+ORD-1393,2024-07-19,user393@example.com,EMEA,N/A,1193.44,1,false,,salesforce
+ORD-1394,27.04.2023,user394@example.com,Unknown,enterprise,1005.07,5,false,,salesforce
+ORD-1395,2023-03-08,user395@example.com,AMER,N/A,248.58,-1,false,follow up,salesforce
+ORD-1396,01/23/2024,user396@example.com,Unknown,enterprise,,10,true,,salesforce
+ORD-1396,2024-03-23,,EMEA,Pro,206.83,5,true,,salesforce
+ORD-1398,18.02.2024,user398@example.com, AMER,enterprise,244.63,2,true,follow up,salesforce
+ORD-1399,2023-10-19,user399@example.com,EMEA,free,283.9,5,true,,salesforce
+ORD-1400,05/03/2024,user400@example.com, AMER,Pro,1508.5,2,true,Ã©levÃ© priority,salesforce
+ORD-1401,01/23/2024,,AMER,N/A,1132.35,3,true,,salesforce
+ORD-1401,2024-03-26,user402@example.com,EMEA,enterprise,284.67,3,false,follow up,salesforce
+ORD-1403,22.09.2023,user403@example.com,Unknown,N/A,,1,true,Ã©levÃ© priority,salesforce
+ORD-1404,2023-03-14,,APAC,pro,428.66,-1,true,,salesforce
+ORD-1405,02/20/2023,user405@example.com,APAC,N/A,183.7,2,true,Ã©levÃ© priority,salesforce
+ORD-1406,2023-09-27,user406@example.com,Unknown,N/A,827.55,-1,false,follow up,salesforce
+ORD-1407,2023-01-28,user407@example.com, AMER,Pro,625.38,-1,true,,salesforce
+ORD-1408,02/25/2023,user408@example.com,APAC,enterprise,657.36,2,true,,salesforce
+ORD-1409,2023-06-05,user409@example.com,AMER,N/A,191.42,-1,true,,salesforce
+ORD-1410,2024-05-09,user410@example.com,EMEA,free,91.31,5,false,follow up,salesforce
+ORD-1411,2023-02-12,user411@example.com,APAC,pro,835.21,3,true,Ã©levÃ© priority,salesforce
+ORD-1412,2024-06-03,, AMER,free,549.24,10,true,follow up,salesforce
+ORD-1413,2023-05-06,user413@example.com,emea,N/A,296.67,2,true,follow up,salesforce
+ORD-1414,11/24/2023,user414@example.com,APAC,Pro,339.0,-1,false,,salesforce
+ORD-1415,02/08/2023,,emea,enterprise,193.13,1,false,Ã©levÃ© priority,salesforce
+ORD-1416,2024-07-16,user416@example.com, AMER,free,113.09,1,false,follow up,salesforce
+ORD-1417,2023-05-11,user417@example.com,EMEA,pro,766.95,2,true,,salesforce
+ORD-1418,2024-10-20,user418@example.com,AMER,free,203.34,2,true,Ã©levÃ© priority,salesforce
+ORD-1419,2024-05-18,,AMER,pro,503.8,1,true,,salesforce
+ORD-1000,2024-01-29,user0@example.com, AMER,Pro,,5,false,,salesforce
+ORD-1005,2024-05-05,user5@example.com, AMER,N/A,611.65,3,false,,salesforce

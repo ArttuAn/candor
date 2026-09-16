@@ -1,0 +1,86 @@
+[
+  {
+    "respondent": "R0",
+    "satisfaction": 5,
+    "segment": "Mid",
+    "would_recommend": "yes"
+  },
+  {
+    "respondent": "R1",
+    "satisfaction": 1,
+    "segment": "Enterprise",
+    "would_recommend": "no"
+  },
+  {
+    "respondent": "R2",
+    "satisfaction": 3,
+    "segment": "Mid",
+    "would_recommend": "yes"
+  },
+  {
+    "respondent": "R3",
+    "satisfaction": 3,
+    "segment": "Enterprise",
+    "would_recommend": "yes"
+  },
+  {
+    "respondent": "R4",
+    "satisfaction": 5,
+    "segment": "Mid",
+    "would_recommend": "no"
+  },
+  {
+    "respondent": "R5",
+    "satisfaction": 5,
+    "segment": "Mid",
+    "would_recommend": "yes"
+  },
+  {
+    "respondent": "R6",
+    "satisfaction": 4,
+    "segment": "Mid",
+    "would_recommend": "yes"
+  },
+  {
+    "respondent": "R7",
+    "satisfaction": 2,
+    "segment": "Enterprise",
+    "would_recommend": "no"
+  },
+  {
+    "respondent": "R8",
+    "satisfaction": 5,
+    "segment": "Mid",
+    "would_recommend": "no"
+  },
+  {
+    "respondent": "R9",
+    "satisfaction": 3,
+    "segment": "Enterprise",
+    "would_recommend": "yes"
+  },
+  {
+    "respondent": "R10",
+    "satisfaction": 4,
+    "segment": "SMB",
+    "would_recommend": "yes"
+  },
+  {
+    "respondent": "R11",
+    "satisfaction": 4,
+    "segment": "Mid",
+    "would_recommend": "no"
+  },
+  {
+    "respondent": "R12",
+    "satisfaction": 3,
+    "segment": "Mid",
+    "would_recommend": "unknown"
+  },
+  {
+    "respondent": "R13",
+    "satisfaction": 2,
+    "segment": "Enterprise",
+    "would_recommend": "unknown"
+  }
+]
