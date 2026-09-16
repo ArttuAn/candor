@@ -1,0 +1,25 @@
+name: Missed defect
+description: candor said the data was fine when it was not
+title: "[FN] "
+labels: ["rule: false-negative"]
+body:
+  - type: textarea
+    id: data
+    attributes:
+      label: The data
+      description: A minimal snippet that reproduces it.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: defect
+    attributes:
+      label: The defect candor missed
+      description: What is wrong with the data, and what a wrong answer from it would look like.
+    validations:
+      required: true
+  - type: input
+    id: question
+    attributes:
+      label: The question being asked
+      description: Leave blank if this is a pure profiling miss.

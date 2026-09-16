@@ -21,7 +21,7 @@
 </p>
 
 <p align="center">
-  <a href="#install">Install</a> &middot;
+  <a href="#-install">Install</a> &middot;
   <a href="#-use-it-from-a-harness-mcp">MCP</a> &middot;
   <a href="#-use-it-from-python">Python</a> &middot;
   <a href="#-use-it-in-ci">CI</a> &middot;
@@ -132,14 +132,12 @@ those stay useful — it sits one step further down the line, where the *answer*
 is made. The tools that solve data quality and the tools that solve confident
 lies are different problems.
 
-| Tool | Approach | Question-aware | Needs an LLM | Tells an agent to refuse |
+| | Approach | Question-aware | Needs an LLM | Tells an agent to refuse |
 |---|---|---|---|---|
-| **Great Expectations** | validates data against declared expectations | ❌ | ❌ | ❌ |
-| **whylogs / WhyLabs** | profiling + drift/observability | ❌ | ❌ | ❌ |
-| **aegis-dq** | LLM-generated rules + root-cause analysis, CI gate + MCP | ❌ | ✅ (API key) | ⚠️ gate only |
-| **quality-gate-sgd** | deterministic gates on agent *coding* output | ❌ | ❌ | ❌ |
-| **llm-quality-gate** | "pytest for LLMs" — eval thresholds in CI | ❌ | ✅ | ❌ |
-| **finetuned-refusal models** | train the model to say "I don't know" | ⚠️ implicit | ✅ (training) | ⚠️ model-level only |
+| **Great Expectations, Soda** | validate data against declared expectations | ❌ | ❌ | ❌ |
+| **whylogs, Evidently** | profiling, drift and observability | ❌ | ❌ | ❌ |
+| **LLM-as-judge eval harnesses** | score outputs against rubrics in CI | ❌ | ✅ | ❌ |
+| **Refusal-tuned models** | train the model to say "I don't know" | ⚠️ implicit | ✅ | ⚠️ model-level only |
 | **candor** | deterministic, question-aware sufficiency + draft verification | ✅ | ❌ | ✅ |
 
 The three questions none of the others answer:

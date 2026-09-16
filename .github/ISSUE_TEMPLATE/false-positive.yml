@@ -1,0 +1,33 @@
+name: False positive
+description: candor flagged something that was actually fine
+title: "[FP] "
+labels: ["rule: false-positive"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        False positives are the most important bug class in this project. A check
+        that fires on an answer which already hedged correctly teaches the agent
+        to hedge less — worse than having no check at all.
+  - type: input
+    id: code
+    attributes:
+      label: Which rule fired
+      description: The issue code, caveat topic, or finding code — e.g. `time_gaps`, `causal_claim`.
+      placeholder: causal_claim
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Input that triggered it
+      description: A minimal CSV snippet, the question, and the draft answer if relevant.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it should not have fired
+    validations:
+      required: true
