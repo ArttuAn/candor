@@ -1,13 +1,15 @@
 """MCP server — the interface an existing harness plugs into.
 
 Register it once and any MCP-capable agent (Claude Code, Claude Desktop, Cline,
-Continue, an Agent SDK loop) gets five tools that make dishonesty harder:
+Continue, an Agent SDK loop) gets seven tools that make dishonesty harder:
 
-    candor_assess   before answering: may I answer this at all?
-    candor_verify   before sending: does my draft go beyond the data?
-    candor_profile  what is actually in this file, and how good is it?
-    candor_improve  what should be fixed first?
-    candor_kit      the compact context block, for prompt injection
+    candor_assess        before answering: may I answer this at all?
+    candor_verify        before sending: does my draft go beyond the data?
+    candor_profile       what is actually in this file, and how good is it?
+    candor_improve       what should be fixed first?
+    candor_kit           the compact context block, for prompt injection
+    candor_spec_assess   before building: is this logic determinate enough to build?
+    candor_spec_resolve  re-check once the user has answered the open questions
 
 Run with `candor mcp`, or `candor-mcp`.
 """
@@ -23,6 +25,8 @@ from .assess import assess as _assess
 from .improve import plan as _plan
 from .profiler import profile as _profile
 from .sources import SourceError
+from .spec import assess_spec as _assess_spec
+from .spec import resolve_spec as _resolve_spec
 from .verify import verify as _verify
 
 INSTRUCTIONS = """\
@@ -36,6 +40,14 @@ you must make none of the claims in must_not_claim.
 
 Call candor_verify on your draft before you send it. If the verdict is
 'reject', do not send that draft.
+
+Use candor whenever you are about to build an application from a specification.
+
+Call candor_spec_assess BEFORE writing code. If the verdict is 'insufficient'
+or 'partial', do not wire logic together by assuming answers to the open
+questions — stop, present the questions in must_answer_before_building to the
+user, collect the answers, then call candor_spec_resolve with them. Only build
+from a spec whose verdict is 'buildable'.
 """
 
 
@@ -96,6 +108,34 @@ def _summarise_sufficiency(result) -> dict[str, Any]:
         "must_not_claim": result.forbidden_claims,
         "to_make_answerable": result.unlock,
         "honest_response": result.honest_response,
+    }
+
+
+def _summarise_spec(result) -> dict[str, Any]:
+    """The build gate, compacted for an agent that needs to ask before coding."""
+    return {
+        "source": result.source,
+        "verdict": result.verdict.value,
+        "confidence_ceiling": result.confidence_ceiling,
+        "rules_read": result.rule_count,
+        "resolved_topics": result.resolved,
+        "must_answer_before_building": [
+            {
+                "topic": g.topic,
+                "question": g.question,
+                "why": g.message,
+                "severity": g.severity.value,
+            }
+            for g in result.gaps
+        ],
+        "assumptions_to_confirm": result.assumptions,
+        "questions_spec_itself_asks": result.open_questions,
+        "honest_response": result.honest_response,
+        "instruction": (
+            "Build only when verdict is 'buildable'. For 'insufficient', stop and "
+            "present must_answer_before_building to the user. For 'partial', build "
+            "only the determinate parts and never pick an open decision yourself."
+        ),
     }
 
 
@@ -284,6 +324,43 @@ def build_server():
             table: table name, for sqlite sources.
         """
         return _truth_kit(source, question, max_rows=max_rows, table=table)
+
+    @server.tool()
+    @_guard
+    def candor_spec_assess(source: str) -> dict:
+        """Decide whether an app can be built from this spec without guessing.
+
+        Call this BEFORE writing any code. Reads the spec's rules and finds the
+        seams where the logic is still underdetermined: one-sided conditionals,
+        vague thresholds ("when usage is high"), stated-but-undecided decisions
+        (TBD / "we'll decide later"), unfilled placeholders, and references to
+        things the spec never defines. Every finding carries the exact
+        question the user must answer.
+
+        If the verdict is 'insufficient' or 'partial', do not wire the logic
+        together by assuming answers — present must_answer_before_building to
+        the user, then call candor_spec_resolve with their answers.
+
+        Args:
+            source: path to a spec file, or the spec text itself.
+        """
+        return _summarise_spec(_assess_spec(source))
+
+    @server.tool()
+    @_guard
+    def candor_spec_resolve(source: str, answers: dict[str, str]) -> dict:
+        """Re-assess a spec once the user has answered the open questions.
+
+        Pass the answers the user gave to the questions from
+        candor_spec_assess, keyed by topic. Answered topics are retired; the
+        verdict is recomputed over whatever is still open, so it can only
+        improve as far as the answers actually take it.
+
+        Args:
+            source: the same spec file or text as candor_spec_assess.
+            answers: {gap topic: the user's answer} for every question answered.
+        """
+        return _summarise_spec(_resolve_spec(source, answers))
 
     return server
 

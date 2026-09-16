@@ -7,8 +7,8 @@
 </p>
 
 <p align="center">
-  <em>A data sufficiency and quality gate for AI agents.</em><br>
-  It tells an agent when the data can&rsquo;t support an answer &mdash; and what would fix it.
+  <em>A sufficiency gate for AI agents — on the data side and the build side.</em><br>
+  It tells an agent when the data can&rsquo;t support an answer, and when a spec can&rsquo;t support the build &mdash; and what would fix it.
 </p>
 
 <p align="center">
@@ -26,6 +26,7 @@
   <a href="#-use-it-from-python">Python</a> &middot;
   <a href="#-use-it-in-ci">CI</a> &middot;
   <a href="#-what-it-looks-for">Rules</a> &middot;
+  <a href="#-how-it-differs-from-what-exists">Alternatives</a> &middot;
   <a href="#-design-notes">Design notes</a>
 </p>
 
@@ -38,7 +39,7 @@ it. July never loaded, so Q3 looks like a 33% decline. Half the rows are missing
 the field being averaged. The question asks *why* and the data can only show
 *what moved together*.
 
-candor sits between the data and the answer and makes three calls:
+candor sits between the situation and the deliverable and makes three calls:
 
 | | |
 |---|---|
@@ -47,6 +48,23 @@ candor sits between the data and the answer and makes three calls:
 | **`improve`** | Afterwards: what should be fixed first, and which questions does each fix unblock? |
 
 When the answer is no, candor hands the agent the words to say instead.
+
+The same habit applies in the other direction — before building an application
+from a specification:
+
+| | |
+|---|---|
+| **`assess_spec`** | Before coding: can this app be built from this logic without inventing requirements? |
+| **`resolve_spec`** | After the human answers the open questions: re-check, then build. |
+
+An agent handed a spec like *"when usage is high, scale up"* could pick 80%,
+build it, and call it done — quietly making a product decision the human never
+made. `assess_spec` refuses to wire the logic together on that assumption. It
+finds the seams — one-sided conditionals, vague thresholds, stated TBDs,
+unfilled placeholders, wiring to undefined components — and hands back the exact
+questions the human has to answer. Verdict `insufficient` means don't build
+yet. Verdict `partial` means build what's determinate, but never pick an open
+decision on the user's behalf.
 
 ```
 $ candor assess orders.csv -q "Why did revenue drop in Q3 2023?"
@@ -76,6 +94,78 @@ violations. The defect is a month that was never loaded, sitting exactly on the
 period the question asks about. That's the shape that gets answered confidently
 and wrong.
 
+```bash
+$ candor spec spec.md
+
+  verdict: INSUFFICIENT    confidence ceiling: 5%    16 rule(s) read
+
+-- underdetermined logic (11) ---------------------------------------------
+  CRITICAL "The retention policy is TBD — we'll decide later." openly leaves
+           a decision open — a builder cannot pick the answer on the human's
+           behalf.
+             ? What is the decision for the open point in: The retention
+               policy is TBD — we'll decide later?
+  HIGH     "When usage is high, scale up the cluster." makes behaviour depend
+           on the word "high" — a rule like this needs a number, a threshold,
+           or a formula before it can be built.
+             ? What number or formula should replace 'high' in: When usage
+               is high, scale up the cluster?
+
+-- honest response --------------------------------------------------------
+  | I won't build this from spec.md yet, and I don't want to invent
+  | requirements quietly on your behalf. The logic that would have to be
+  | decided before it can be built:
+  |   - "The retention policy is TBD — we'll decide later." ...
+  | Answer these, and I'll re-check.
+  | I can't proceed by assuming the answers.
+```
+
+Note what happened there. Not a wrong requirement — an *absent* one. The agent
+is not told the threshold, the complementary branch, or what `the connector`
+is, so every one of those is a decision it would have to guess. candor makes
+the guess impossible and the question explicit.
+
+## ⚖️ How it differs from what exists
+
+candor does not compete with the schema-validation and observability layers —
+those stay useful — it sits one step further down the line, where the *answer*
+is made. The tools that solve data quality and the tools that solve confident
+lies are different problems.
+
+| Tool | Approach | Question-aware | Needs an LLM | Tells an agent to refuse |
+|---|---|---|---|---|
+| **Great Expectations** | validates data against declared expectations | ❌ | ❌ | ❌ |
+| **whylogs / WhyLabs** | profiling + drift/observability | ❌ | ❌ | ❌ |
+| **aegis-dq** | LLM-generated rules + root-cause analysis, CI gate + MCP | ❌ | ✅ (API key) | ⚠️ gate only |
+| **quality-gate-sgd** | deterministic gates on agent *coding* output | ❌ | ❌ | ❌ |
+| **llm-quality-gate** | "pytest for LLMs" — eval thresholds in CI | ❌ | ✅ | ❌ |
+| **finetuned-refusal models** | train the model to say "I don't know" | ⚠️ implicit | ✅ (training) | ⚠️ model-level only |
+| **candor** | deterministic, question-aware sufficiency + draft verification | ✅ | ❌ | ✅ |
+
+The three questions none of the others answer:
+
+1. **"Is *this question* answerable from *this data*?"** A normal data-quality
+   tool reports that July has no nulls and the schema is fine. candor reports
+   that July was never loaded — and that the question asks about exactly that
+   month, so a "drop in Q3" cannot be told apart from missing data. That
+   defect only exists once a question is overlaid on the data.
+2. **"Does this draft claim more than the data supports?"** Checking data
+   quality says nothing about the prose an agent is about to send. candor
+   reads the draft, catches invented counts, phantom fields, causal language,
+   unbacked forecasts and dropped caveats — and only nags answers that
+   actually deserve it.
+3. **"What should I tell the model instead?"** candor hands the agent a
+   written `honest_response` and the exact `must_say` / `must_not_claim`
+   constraints — it doesn't just block, it completes the sentence for the
+   agent in honest prose.
+
+And the design bet that makes it frictionless where the others can't be:
+**no model call, no API key, no warehouse, no dependencies.** Question parsing
+is lexical, the rules are deterministic, and the core runs on the standard
+library. That means the same verdict every run, offline, in CI, for free —
+and it works with *any* model, because it never relies on the model being
+honest.
+
 ## 📦 Install
 
 ```bash
@@ -89,7 +179,7 @@ SQLite are handled with the standard library. Parquet needs the `parquet` extra.
 ## 🔌 Use it from a harness (MCP)
 
 This is the intended path. Register the server once and any MCP-capable agent —
-Claude Code, Claude Desktop, Cline, Continue, an Agent SDK loop — gets five
+Claude Code, Claude Desktop, Cline, Continue, an Agent SDK loop — gets seven
 tools and a set of instructions telling it when to refuse.
 
 ```json
@@ -115,6 +205,8 @@ claude mcp add candor -- candor-mcp
 | `candor_profile` | What is in this file, and how trustworthy is it? |
 | `candor_improve` | Ranked remediation plan, annotated with which questions each fix unblocks. |
 | `candor_kit` | The whole honesty block, compact enough to paste into a system prompt. |
+| `candor_spec_assess` | Before building: can this app be built from this spec without guessing? Returns the questions the user must answer first. |
+| `candor_spec_resolve` | Re-check a spec once the user has answered those questions; build only when the verdict is `buildable`. |
 
 The server ships instructions that the client surfaces to the model:
 
@@ -123,6 +215,12 @@ The server ships instructions that the client surfaces to the model:
 > If the verdict is 'partial', you may answer, but every sentence in `must_say`
 > has to appear in your answer, in your own words, in the body — not as a
 > footnote — and you must make none of the claims in `must_not_claim`.
+>
+> Call `candor_spec_assess` BEFORE you write code for an application. If the
+> verdict is not 'buildable', do not wire the logic together by assuming
+> answers — stop, present `must_answer_before_building` to the user, then call
+> `candor_spec_resolve` with their answers. Only build from a spec whose
+> verdict is 'buildable'.
 
 ## 🐍 Use it from Python
 
@@ -149,6 +247,21 @@ kit = candor.truth_kit("orders.csv", "Why did revenue drop in Q3 2023?")
 # {'verdict': 'insufficient', 'confidence_ceiling': 0.06,
 #  'must_say': [...], 'must_not_claim': [...], 'honest_response': '...',
 #  'to_make_answerable': [...], 'instruction': '...'}
+```
+
+The build gate works the same way, mirrored:
+
+```python
+spec = candor.assess_spec("spec.md")            # or pass the spec text directly
+
+if spec.verdict is not candor.BuildVerdict.BUILDABLE:
+    for gap in spec.gaps[:4]:                   # each gap is one question
+        answer = ask_the_user(gap.question)     # gap.topic keys the answer
+        answers[gap.topic] = answer
+
+build_ready = candor.resolve_spec("spec.md", answers)
+if build_ready.verdict is candor.BuildVerdict.BUILDABLE:
+    build_the_app()
 ```
 
 ## ✅ Use it in CI
@@ -230,12 +343,16 @@ uv run ruff check src tests
 ```
 
 The `examples/` directory holds a deliberately messy export, a clean one, and a
-small survey — enough to see every rule fire:
+small survey — enough to see every rule fire — plus a draft spec and the same
+spec once the decisions are made:
 
 ```bash
 uv run candor profile examples/messy_orders.csv
 uv run candor assess examples/messy_orders.csv -q "Why did revenue drop in Q3 2023?"
 uv run candor improve examples/messy_orders.csv -q "What was revenue by region?"
+
+uv run candor spec examples/spec_messy.md     # insufficient: 8 questions to answer
+uv run candor spec examples/spec_clean.md      # buildable: exit 0, build normally
 ```
 
 ## 📄 Licence

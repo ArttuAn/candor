@@ -26,6 +26,7 @@ def _payload(result):
 
 EXPECTED_TOOLS = {
     "candor_assess", "candor_verify", "candor_profile", "candor_improve", "candor_kit",
+    "candor_spec_assess", "candor_spec_resolve",
 }
 
 

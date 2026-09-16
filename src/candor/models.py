@@ -57,6 +57,24 @@ class Verdict(StrEnum):
         return ["insufficient", "partial", "answerable"].index(self.value)
 
 
+class BuildVerdict(StrEnum):
+    """Can the agent build the app from this logic?
+
+    The counterpoint to `Verdict`. A question can be unanswerable because the
+    data is thin; a build request can be unbuildable because the logic is
+    underdetermined — the spec says X triggers Y without ever saying what X
+    is, what happens otherwise, or what "high" means.
+    """
+
+    BUILDABLE = "buildable"
+    PARTIAL = "partial"
+    INSUFFICIENT = "insufficient"
+
+    @property
+    def rank(self) -> int:
+        return ["insufficient", "partial", "buildable"].index(self.value)
+
+
 class Effort(StrEnum):
     LOW = "low"
     MEDIUM = "medium"
@@ -270,6 +288,51 @@ class ClaimReport:
     honesty_score: float = 100.0
     verdict: str = "pass"  # pass | revise | reject
     checked_claims: int = 0
+
+
+# --------------------------------------------------------------------------- #
+# build-logic sufficiency
+
+
+@dataclass
+class LogicGap:
+    """A specific place where the spec leaves the logic underdetermined.
+
+    `topic` is a stable identifier used by `candor_spec_resolve` to match a
+    human's answer to the gap it closes.
+    """
+
+    topic: str
+    code: str
+    severity: Severity
+    message: str
+    quote: str = ""
+    fix: str = ""
+    question: str = ""
+
+
+@dataclass
+class SpecAssessment:
+    """Can the app be built from this logic — without guessing?
+
+    This is the build-side counterpart of `Sufficiency`. Instead of caveats
+    the answer must state, it carries the decisions the builder must not make
+    on the human's behalf, each turned into a question the human answers.
+    """
+
+    source: str
+    verdict: BuildVerdict = BuildVerdict.BUILDABLE
+    confidence_ceiling: float = 1.0
+    rule_count: int = 0
+    gaps: list[LogicGap] = field(default_factory=list)
+    open_questions: list[str] = field(default_factory=list)
+    assumptions: list[str] = field(default_factory=list)
+    honest_response: str = ""
+    resolved: list[str] = field(default_factory=list)
+
+    @property
+    def blocking(self) -> list[LogicGap]:
+        return [g for g in self.gaps if g.severity in (Severity.CRITICAL, Severity.HIGH)]
 
 
 # --------------------------------------------------------------------------- #

@@ -1,6 +1,8 @@
-"""candor — a data sufficiency and quality gate for AI agents.
+"""candor — a sufficiency gate for AI agents.
 
-Three calls cover the whole loop:
+Two gates, one habit: never invent what the human should decide.
+
+Data gate — can this question be answered from this data?
 
     import candor
 
@@ -8,8 +10,15 @@ Three calls cover the whole loop:
     s = candor.assess(p, "why did revenue drop in Q3?")  # can it answer this?
     r = candor.verify(p, draft_answer, sufficiency=s)    # does the answer hold up?
 
-`s.honest_response` is the point of the library: when the data cannot support
-the question, it contains the words to say instead of a confident number.
+Build gate — can this app be built from this logic, without guessing?
+
+    b = candor.assess_spec("spec.md")
+    if b.verdict is not candor.BuildVerdict.BUILDABLE:
+        ask_the_user(b.gaps)   # each gap carries the question
+
+`s.honest_response` and `b.honest_response` are the point of the library: when
+the data cannot support the question — or the logic cannot support the build —
+they contain the words to say instead of a confident guess.
 """
 
 from __future__ import annotations
@@ -18,6 +27,7 @@ from .assess import assess, assess_source
 from .grading import grade_for, trust_level
 from .improve import plan, quick_wins
 from .models import (
+    BuildVerdict,
     Caveat,
     ClaimReport,
     ColumnProfile,
@@ -28,8 +38,10 @@ from .models import (
     Gap,
     ImprovementPlan,
     Issue,
+    LogicGap,
     Remediation,
     Severity,
+    SpecAssessment,
     Sufficiency,
     Verdict,
     to_dict,
@@ -39,13 +51,14 @@ from .profiler import profile, profile_table
 from .question import QuestionSpec
 from .question import parse as parse_question
 from .sources import SourceError, Table, load
+from .spec import assess_spec, resolve_spec, spec_kit
 from .verify import verify
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 __all__ = [
     "__version__",
-    # pipeline
+    # data pipeline
     "profile",
     "profile_table",
     "assess",
@@ -54,6 +67,10 @@ __all__ = [
     "plan",
     "quick_wins",
     "truth_kit",
+    # build pipeline
+    "assess_spec",
+    "resolve_spec",
+    "spec_kit",
     # inputs
     "load",
     "Table",
@@ -74,6 +91,9 @@ __all__ = [
     "Dimension",
     "Severity",
     "Verdict",
+    "BuildVerdict",
+    "SpecAssessment",
+    "LogicGap",
     "Effort",
     # helpers
     "grade_for",

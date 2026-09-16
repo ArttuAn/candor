@@ -17,15 +17,17 @@ from pathlib import Path
 from . import __version__, truth_kit
 from .assess import assess
 from .improve import plan
-from .models import Verdict, to_json
+from .models import BuildVerdict, Verdict, to_json
 from .profiler import profile as build_profile
 from .render import (
     render_claims,
     render_plan,
     render_profile,
+    render_spec_assessment,
     render_sufficiency,
 )
 from .sources import SourceError, list_sqlite_tables
+from .spec import assess_spec, resolve_spec
 from .verify import verify
 
 EXIT_OK = 0
@@ -101,6 +103,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_tables = sub.add_parser("tables", help="list the tables in a sqlite database")
     p_tables.add_argument("source")
 
+    p_spec = sub.add_parser("spec", help="can the app be built from this logic without guessing?")
+    p_spec.add_argument("source", help="path to a spec file, or inline spec text")
+    p_spec.add_argument("-a", "--answer", action="append", default=[],
+                        help="answer one open question as topic=answer; repeatable")
+    p_spec.add_argument("--json", action="store_true", help="emit JSON instead of a report")
+
     sub.add_parser("mcp", help="run the MCP server on stdio")
     return parser
 
@@ -127,6 +135,21 @@ def main(argv: list[str] | None = None) -> int:
             print(f"candor: {exc}", file=sys.stderr)
             return EXIT_UNREADABLE
         return EXIT_OK
+
+    if args.command == "spec":
+        answers: dict[str, str] = {}
+        for item in args.answer:
+            if "=" not in item:
+                raise SystemExit("candor spec: answers must be topic=answer")
+            topic, _, answer = item.partition("=")
+            answers[topic.strip()] = answer.strip()
+        result = resolve_spec(args.source, answers) if answers else assess_spec(args.source)
+        print(to_json(result) if args.json else render_spec_assessment(result))
+        return {
+            BuildVerdict.BUILDABLE: EXIT_OK,
+            BuildVerdict.PARTIAL: EXIT_CAVEATS,
+            BuildVerdict.INSUFFICIENT: EXIT_INSUFFICIENT,
+        }[result.verdict]
 
     try:
         profile = _load(args)

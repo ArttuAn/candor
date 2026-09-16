@@ -12,10 +12,12 @@ import sys
 
 from .grading import trust_level
 from .models import (
+    BuildVerdict,
     ClaimReport,
     DatasetProfile,
     ImprovementPlan,
     Severity,
+    SpecAssessment,
     Sufficiency,
     Verdict,
 )
@@ -43,6 +45,12 @@ VERDICT_COLOR = {
     Verdict.ANSWERABLE: GREEN,
     Verdict.PARTIAL: YELLOW,
     Verdict.INSUFFICIENT: RED,
+}
+
+BUILD_VERDICT_COLOR = {
+    BuildVerdict.BUILDABLE: GREEN,
+    BuildVerdict.PARTIAL: YELLOW,
+    BuildVerdict.INSUFFICIENT: RED,
 }
 
 
@@ -172,6 +180,56 @@ def render_sufficiency(result: Sufficiency, *, profile: DatasetProfile | None = 
         out.append(rule("what would unlock this question"))
         for step in result.unlock:
             out.append(wrap(step, indent=2, first_prefix=f"{BLUE}+{RESET} "))
+        out.append("")
+
+    out.append(rule("honest response"))
+    out.append("")
+    for line in result.honest_response.splitlines():
+        out.append(f"  {MAGENTA}|{RESET} {line}")
+    out.append("")
+    return "\n".join(out)
+
+
+def render_spec_assessment(result: SpecAssessment) -> str:
+    out: list[str] = []
+    colour = BUILD_VERDICT_COLOR[result.verdict]
+
+    out.append("")
+    out.append(rule("spec sufficiency"))
+    out.append(f"  {DIM}source:  {RESET} {result.source}")
+    out.append("")
+    out.append(f"  verdict: {colour}{BOLD}{result.verdict.value.upper()}{RESET}"
+               f"    confidence ceiling: {BOLD}{result.confidence_ceiling:.0%}{RESET}"
+               f"    {DIM}{result.rule_count} rule(s) read{RESET}")
+    if result.resolved:
+        out.append(f"  {DIM}resolved: {', '.join(result.resolved[:5])}{RESET}")
+    out.append("")
+
+    if not result.gaps:
+        out.append(f"  {GREEN}No underdetermined logic found — the build is not "
+                   f"blocked by guessing.{RESET}")
+        out.append("")
+        return "\n".join(out)
+
+    out.append(rule(f"underdetermined logic ({len(result.gaps)})"))
+    for gap in result.gaps:
+        gap_colour = SEVERITY_COLOR[gap.severity]
+        out.append(f"  {gap_colour}{gap.severity.value.upper():<8}{RESET} "
+                   f"{BOLD}{gap.message}{RESET}")
+        out.append(wrap(gap.question, indent=13, first_prefix=f"{BLUE}?{RESET} "))
+        out.append(wrap(gap.fix, indent=13, first_prefix="fix: "))
+        out.append("")
+
+    if result.open_questions:
+        out.append(rule("questions the spec itself asks"))
+        for question in result.open_questions:
+            out.append(wrap(question, indent=2, first_prefix=f"{YELLOW}?{RESET} "))
+        out.append("")
+
+    if result.assumptions:
+        out.append(rule("assumptions to confirm"))
+        for assumption in result.assumptions:
+            out.append(wrap(assumption, indent=2, first_prefix=f"{DIM}> {RESET} "))
         out.append("")
 
     out.append(rule("honest response"))
