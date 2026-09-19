@@ -6,6 +6,21 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- **`--as-of DATE`** on every command that reads a source. Judges freshness
+  against the given date instead of today, so a run over a fixed snapshot is
+  reproducible. Staleness is the one measurement that changes while the file
+  does not.
+
+### Fixed
+
+- The `examples` CI job failed on every run since the first release. The
+  committed `clean_orders.csv` snapshot ends 2025-08-22, so the freshness rule
+  correctly flagged it as stale and the documented `gate` command exited 1 —
+  a build that rotted by the calendar rather than by any change. The example is
+  now pinned with `--as-of`.
+
 ## [0.1.0] — 2026-09-16
 
 First release.

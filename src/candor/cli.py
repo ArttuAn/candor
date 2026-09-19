@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+from datetime import datetime
 from pathlib import Path
 
 from . import __version__, truth_kit
@@ -45,6 +46,26 @@ def _add_source_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--table", help="table name, for sqlite sources")
     parser.add_argument("--query", help="SQL to run instead of reading a table, for sqlite sources")
     parser.add_argument("--json", action="store_true", help="emit JSON instead of a report")
+    parser.add_argument("--as-of", metavar="DATE",
+                        help="judge freshness against this date (YYYY-MM-DD) instead of today; "
+                             "use it for snapshot data so a run is reproducible")
+
+
+def _as_of(args) -> datetime | None:
+    """`--as-of` as a datetime.
+
+    Staleness is the one measurement that changes when nothing else does: the
+    same file scores worse tomorrow. Pinning the date is what makes a run on a
+    fixed snapshot reproducible — and what keeps a committed example from
+    rotting into a failing build.
+    """
+    raw = getattr(args, "as_of", None)
+    if not raw:
+        return None
+    try:
+        return datetime.strptime(raw, "%Y-%m-%d")  # noqa: DTZ007 - a naive wall-clock date, as profiles use
+    except ValueError:
+        raise SystemExit(f"candor: --as-of must be YYYY-MM-DD, got {raw!r}") from None
 
 
 def _read_answer(args) -> str:
@@ -116,7 +137,8 @@ def build_parser() -> argparse.ArgumentParser:
 def _load(args):
     return build_profile(args.source, max_rows=args.max_rows,
                          table=getattr(args, "table", None),
-                         query=getattr(args, "query", None))
+                         query=getattr(args, "query", None),
+                         now=_as_of(args))
 
 
 def main(argv: list[str] | None = None) -> int:

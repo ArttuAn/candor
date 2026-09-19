@@ -270,6 +270,10 @@ question the pipeline is supposed to answer stops being answerable.
 ```bash
 candor gate warehouse.db --table orders --min-grade B
 candor gate orders.csv -q "What was revenue by region last month?"
+
+# snapshot data: judge freshness as of the day it was taken, not today,
+# so the same file scores the same next month
+candor gate examples/clean_orders.csv --min-grade D --as-of 2025-08-22
 ```
 
 | Exit code | Meaning |

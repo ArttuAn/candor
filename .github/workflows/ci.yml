@@ -31,4 +31,6 @@ jobs:
       - run: uv sync
       - run: uv run candor profile examples/messy_orders.csv || [ $? -le 2 ]
       - run: uv run candor assess examples/messy_orders.csv -q "Why did revenue drop in Q3 2023?" || [ $? -le 2 ]
-      - run: uv run candor gate examples/clean_orders.csv --min-grade D
+      # `--as-of` pins freshness to the snapshot's last day. Without it this
+      # example fails purely by the calendar: the data is fixed, today is not.
+      - run: uv run candor gate examples/clean_orders.csv --min-grade D --as-of 2025-08-22

@@ -106,3 +106,33 @@ def test_version(capsys):
     with pytest.raises(SystemExit) as excinfo:
         main(["--version"])
     assert excinfo.value.code == 0
+
+
+# --- `--as-of` -------------------------------------------------------------
+#
+# Staleness is the one measurement that changes while the file does not, so a
+# committed example fails eventually no matter how clean it is. `--as-of` pins
+# the clock; these tests pin `--as-of`.
+
+
+def test_as_of_judges_freshness_against_the_given_date(capsys, clean_csv):
+    """The same file, two clocks, two verdicts."""
+    stale, _ = run(capsys, "gate", str(clean_csv), "--min-grade", "D", "--as-of", "2030-01-01")
+    fresh, _ = run(capsys, "gate", str(clean_csv), "--min-grade", "D", "--as-of", "2024-12-16")
+    assert stale != EXIT_OK
+    assert fresh == EXIT_OK
+
+
+def test_as_of_makes_a_run_reproducible(capsys, clean_csv):
+    first, out_a = run(capsys, "profile", str(clean_csv), "--json", "--as-of", "2024-12-16")
+    second, out_b = run(capsys, "profile", str(clean_csv), "--json", "--as-of", "2024-12-16")
+    a, b = json.loads(out_a.out), json.loads(out_b.out)
+    assert first == second
+    assert a["grade"] == b["grade"]
+    assert a["score"] == b["score"]
+
+
+def test_a_bad_as_of_is_rejected_with_a_readable_message(clean_csv):
+    with pytest.raises(SystemExit) as excinfo:
+        main(["profile", str(clean_csv), "--as-of", "last tuesday"])
+    assert "YYYY-MM-DD" in str(excinfo.value)
