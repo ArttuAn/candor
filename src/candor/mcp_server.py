@@ -154,7 +154,7 @@ def _server_class():
     except ImportError as exc:
         raise SystemExit(
             "the MCP server needs the 'mcp' package — install candor with the mcp extra:\n"
-            "    uv pip install 'candor[mcp]'"
+            "    uv pip install 'candor-gate[mcp]'"
         ) from exc
 
 

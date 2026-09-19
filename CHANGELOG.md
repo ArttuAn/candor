@@ -6,6 +6,16 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-09-19
+
+### Changed
+
+- The distribution is now **`candor-gate`** on PyPI. The bare name `candor` is
+  taken by an unrelated project, so the documented `pip install candor` fetched
+  a stranger's package and publishing under that name was never possible. The
+  command, the import and the repository are unchanged: `pip install
+  candor-gate`, then `candor gate ...` or `import candor`.
+
 ### Added
 
 - **`--as-of DATE`** on every command that reads a source. Judges freshness
@@ -64,5 +74,6 @@ First release.
 - Day/month-ambiguous dates are rated critical rather than resolved by
   guessing a locale.
 
-[Unreleased]: https://github.com/ArttuAn/candor/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/ArttuAn/candor/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/ArttuAn/candor/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/ArttuAn/candor/releases/tag/v0.1.0

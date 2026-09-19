@@ -255,7 +255,7 @@ def from_parquet(path: Path, max_rows: int = DEFAULT_MAX_ROWS) -> Table:
         import pyarrow.parquet as pq  # type: ignore[import-not-found]
     except ImportError as exc:
         raise SourceError(
-            "reading parquet needs pyarrow — install candor with the 'parquet' extra"
+            "reading parquet needs pyarrow — install candor-gate with the 'parquet' extra"
         ) from exc
     table = pq.read_table(path)
     truncated = table.num_rows > max_rows

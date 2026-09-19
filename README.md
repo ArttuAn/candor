@@ -167,9 +167,13 @@ honest.
 ## 📦 Install
 
 ```bash
-uv pip install "candor[mcp]"          # with the MCP server
-uv pip install candor                 # library and CLI only, zero dependencies
+uv pip install "candor-gate[mcp]"     # with the MCP server
+uv pip install candor-gate            # library and CLI only, zero dependencies
 ```
+
+The package is `candor-gate`; the command and the import are `candor`
+(`pip install candor-gate`, then `candor gate ...` or `import candor`). The bare
+name on PyPI belongs to an unrelated project.
 
 Python 3.11+. The core has no dependencies at all: CSV, TSV, JSON, JSONL and
 SQLite are handled with the standard library. Parquet needs the `parquet` extra.

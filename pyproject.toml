@@ -1,6 +1,6 @@
 [project]
-name = "candor"
-version = "0.1.0"
+name = "candor-gate"
+dynamic = ["version"]
 description = "Data sufficiency and quality gate for AI agents — tells an agent when the data cannot support an answer, and what would fix it."
 readme = "README.md"
 authors = [{ name = "arttuan", email = "arttu.antikainen@outlook.com" }]
@@ -19,6 +19,9 @@ candor-mcp = "candor.mcp_server:main"
 
 [dependency-groups]
 dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[tool.hatch.version]
+path = "src/candor/__init__.py"
 
 [build-system]
 requires = ["hatchling"]
