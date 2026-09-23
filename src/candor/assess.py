@@ -25,7 +25,16 @@ from .issues import (
     RANKING,
     TREND,
 )
-from .models import Caveat, ColumnProfile, DatasetProfile, Gap, Severity, Sufficiency, Verdict
+from .models import (
+    Caveat,
+    ColumnProfile,
+    DatasetProfile,
+    Gap,
+    Severity,
+    Sufficiency,
+    TemporalStats,
+    Verdict,
+)
 from .question import QuestionSpec
 
 # Business vocabulary -> the column names it usually hides behind.
@@ -303,7 +312,11 @@ def assess(profile: DatasetProfile, question: str, *,
     elif temporal:
         primary = max(temporal, key=lambda c: c.temporal.distinct_periods if c.temporal else 0)
         stats = primary.temporal
-        assert stats is not None
+        if stats is None or not stats.min or not stats.max:
+            # The profiler always fills these; a hand-built DatasetProfile can
+            # skip them. Nothing time-based can be tested against a range that
+            # was never captured, so fall back to an empty one rather than die.
+            stats = TemporalStats(min="", max="")
 
         for ref in spec.time_refs:
             covered = _covers(primary, ref)

@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import UTC, datetime
 
 from .issues import (
     AGGREGATE,
@@ -210,7 +210,9 @@ def _group_name(captured: str) -> str | None:
 
 def parse(text: str, *, now: datetime | None = None) -> QuestionSpec:
     """Parse a natural-language question into the requirements it implies."""
-    now = now or datetime.now()
+    # Same rule as profiler.profile_table and assess.assess: naive UTC wall
+    # clock, so "this month" resolves identically on machines in any timezone.
+    now = now or datetime.now(UTC).replace(tzinfo=None)
     spec = QuestionSpec(text=text.strip())
 
     for intent, pattern in INTENT_PATTERNS:

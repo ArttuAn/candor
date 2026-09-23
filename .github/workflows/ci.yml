@@ -19,7 +19,7 @@ jobs:
           enable-cache: true
       - run: uv sync --extra mcp --python ${{ matrix.python-version }}
       - run: uv run ruff check src tests
-      - run: uv run pytest -q
+      - run: uv run pytest -q --cov=candor --cov-report=term-missing --cov-fail-under=85
 
   # The examples are part of the documentation; if they stop working the README
   # is lying.

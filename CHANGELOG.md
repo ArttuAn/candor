@@ -16,6 +16,20 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   false)` and platforms that warn before invoking or cache by side effect now
   know it. Hosts that reject tools with missing or non-boolean hints no longer
   drop the whole server.
+- Question parsing now resolves "this month / last month / ytd" against the
+  same naive-UTC wall clock the profiler and assessor use, instead of the
+  machine's local timezone — the same question now maps to the same period on
+  every machine.
+- Numeric parsing rejects non-finite values (`1e999`, 300-digit strings), so a
+  runaway cell can no longer leak `inf` into a median, a mean, or a caveat.
+  The unused weaker sentinel set was removed.
+- A date-typed column with no parsed range (possible on a hand-built profile)
+  no longer trips an `assert` and crashes `assess`.
+- SQLite paths and table names are escaped when building the read-only URI and
+  the `SELECT * FROM` query, so a name containing `"`, `?`, `#` or `%` reads
+  correctly instead of failing with a confusing error.
+- The MCP server returns an error envelope (not a raw traceback) when a tool
+  hits a read, value or serialisation error.
 
 ## [0.2.0] — 2026-09-19
 

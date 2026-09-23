@@ -18,7 +18,7 @@ candor = "candor.cli:main"
 candor-mcp = "candor.mcp_server:main"
 
 [dependency-groups]
-dev = ["pytest>=8.0", "ruff>=0.6"]
+dev = ["pytest>=8.0", "pytest-cov>=5.0", "ruff>=0.6"]
 
 [tool.hatch.version]
 path = "src/candor/__init__.py"

@@ -162,18 +162,26 @@ def _server_class():
 # never writes, never takes an irreversible action, never talks to the network,
 # and answers the same way every time it is called with the same arguments.
 # Declaring that lets hosts warn before invoking, cache safely, and reject
-# tools that lie about their side effects.
-READ_ONLY_HINTS = {
-    "readOnlyHint": True,
-    "destructiveHint": False,
-    "idempotentHint": True,
-    "openWorldHint": False,
-    "title": "candor",
-}
+# tools that lie about their side effects. Imported lazily so that importing
+# this module without the mcp package still fails with the friendly message in
+# _server_class(), not an ImportError at module load.
+def _read_only_annotations():
+    from mcp.types import ToolAnnotations
+
+    # camelCase keys are the field aliases on the 2.x SDK and the field names on
+    # 1.x, so a single construction lands correctly on either.
+    return ToolAnnotations.model_validate({
+        "title": "candor",
+        "readOnlyHint": True,
+        "destructiveHint": False,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    })
 
 
 def build_server():
     server = _server_class()("candor", instructions=INSTRUCTIONS)
+    hints = _read_only_annotations()
 
     def _guard(fn):
         """Turn an unreadable source into an answer, not a stack trace.
@@ -187,7 +195,7 @@ def build_server():
         def wrapped(*args, **kwargs):
             try:
                 return json.dumps(fn(*args, **kwargs), indent=2, default=str, ensure_ascii=False)
-            except SourceError as exc:
+            except (SourceError, OSError, ValueError, OverflowError, TypeError) as exc:
                 return json.dumps({
                     "error": str(exc),
                     "verdict": "insufficient",
@@ -197,7 +205,7 @@ def build_server():
 
         return wrapped
 
-    @server.tool(annotations=READ_ONLY_HINTS)
+    @server.tool(annotations=hints)
     @_guard
     def candor_assess(source: str, question: str, max_rows: int = 200_000,
                       table: str | None = None) -> dict:
@@ -223,7 +231,7 @@ def build_server():
             **_summarise_sufficiency(result),
         }
 
-    @server.tool(annotations=READ_ONLY_HINTS)
+    @server.tool(annotations=hints)
     @_guard
     def candor_verify(source: str, draft_answer: str, question: str | None = None,
                       max_rows: int = 200_000, table: str | None = None) -> dict:
@@ -266,7 +274,7 @@ def build_server():
             ),
         }
 
-    @server.tool(annotations=READ_ONLY_HINTS)
+    @server.tool(annotations=hints)
     @_guard
     def candor_profile(source: str, max_rows: int = 200_000,
                        table: str | None = None) -> dict:
@@ -283,7 +291,7 @@ def build_server():
         """
         return _summarise_profile(_profile(source, max_rows=max_rows, table=table))
 
-    @server.tool(annotations=READ_ONLY_HINTS)
+    @server.tool(annotations=hints)
     @_guard
     def candor_improve(source: str, questions: list[str] | None = None,
                        max_rows: int = 200_000, table: str | None = None) -> dict:
@@ -321,7 +329,7 @@ def build_server():
             ],
         }
 
-    @server.tool(annotations=READ_ONLY_HINTS)
+    @server.tool(annotations=hints)
     @_guard
     def candor_kit(source: str, question: str, max_rows: int = 200_000,
                    table: str | None = None) -> dict:
@@ -339,7 +347,7 @@ def build_server():
         """
         return _truth_kit(source, question, max_rows=max_rows, table=table)
 
-    @server.tool(annotations=READ_ONLY_HINTS)
+    @server.tool(annotations=hints)
     @_guard
     def candor_spec_assess(source: str) -> dict:
         """Decide whether an app can be built from this spec without guessing.
@@ -360,7 +368,7 @@ def build_server():
         """
         return _summarise_spec(_assess_spec(source))
 
-    @server.tool(annotations=READ_ONLY_HINTS)
+    @server.tool(annotations=hints)
     @_guard
     def candor_spec_resolve(source: str, answers: dict[str, str]) -> dict:
         """Re-assess a spec once the user has answered the open questions.

@@ -64,7 +64,7 @@ def plan(profile: DatasetProfile, questions: list[str] | None = None) -> Improve
         for issue in profile.issues:
             if issue.column and any(issue.column in b.columns for b in result.blockers):
                 blocked_by_code[issue.code].append(question)
-            elif issue.code in codes or (issue.code == "empty_dataset" and "empty_dataset" in codes):
+            elif issue.code in codes:
                 blocked_by_code[issue.code].append(question)
             elif issue.blocks and set(issue.blocks) & set(result.intents):
                 blocked_by_code[issue.code].append(question)

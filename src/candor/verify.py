@@ -45,7 +45,7 @@ HEDGE_RE = re.compile(
     r"not enough|only (?:covers|includes)|based on the \d+)\b", re.I)
 
 FORECAST_RE = re.compile(
-    r"\b(will (?:be|reach|grow|rise|fall|increase|decrease|hit|recover|climb|drop|"r"improve|decline|continue|remain|stay|exceed|return|double|halve)|"
+    r"\b(will (?:be|reach|grow|rise|fall|increase|decrease|hit|recover|climb|drop|improve|decline|continue|remain|stay|exceed|return|double|halve)|"
     r"is going to|expect(?:ed)? to (?:reach|be|grow)|by (?:next|the end of)|"
     r"projected? to|forecast(?:ed)? (?:at|to))\b", re.I)
 

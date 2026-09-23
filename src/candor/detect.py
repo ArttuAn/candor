@@ -7,6 +7,7 @@ library coerced them.
 
 from __future__ import annotations
 
+import math
 import re
 from datetime import date, datetime
 
@@ -25,8 +26,6 @@ PLACEHOLDER_TOKENS = {
     "no value", "blank", "empty", "(blank)", "(none)", "null value",
 }
 
-# Numeric sentinels that stand in for missing data.
-NUMERIC_SENTINELS = {-1.0, -9.0, -99.0, -999.0, -9999.0, 9999.0, 99999.0, 999999.0, 0.0}
 STRONG_NUMERIC_SENTINELS = {-999.0, -9999.0, 9999.0, 99999.0, 999999.0}
 
 BOOL_TRUE = {"true", "t", "yes", "y", "1"}
@@ -115,6 +114,8 @@ def normalise_number(text: str) -> float | None:
     try:
         value = float(s)
     except ValueError:
+        return None
+    if not math.isfinite(value):  # 1e999 or a 300-digit string is not a usable measure
         return None
     return -value if negative else value
 

@@ -11,6 +11,7 @@ import io
 import json
 import sqlite3
 import sys
+import urllib.parse
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -218,7 +219,7 @@ def from_jsonl(path: Path, max_rows: int = DEFAULT_MAX_ROWS) -> Table:
 
 def from_sqlite(path: Path, table_name: str | None = None,
                 query: str | None = None, max_rows: int = DEFAULT_MAX_ROWS) -> Table:
-    conn = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+    conn = sqlite3.connect(f"file:{urllib.parse.quote(str(path))}?mode=ro", uri=True)
     try:
         conn.row_factory = sqlite3.Row
         if not query:
@@ -235,7 +236,10 @@ def from_sqlite(path: Path, table_name: str | None = None,
                 table_name = names[0]
             elif table_name not in names:
                 raise SourceError(f"{path}: no table named {table_name!r} (have: {', '.join(names)})")
-            query = f'SELECT * FROM "{table_name}" LIMIT {max_rows + 1}'
+            # The name comes from the schema's own listing, so it cannot
+            # inject; the quote-doubling keeps a name containing " working.
+            target = names[0] if table_name is None else table_name
+            query = f'SELECT * FROM "{target.replace(chr(34), chr(34) * 2)}" LIMIT {max_rows + 1}'
         cursor = conn.execute(query)
         columns = [d[0] for d in cursor.description]
         fetched = cursor.fetchall()
@@ -310,7 +314,7 @@ def load(source: str | Path, *, max_rows: int = DEFAULT_MAX_ROWS,
 
 
 def list_sqlite_tables(path: str | Path) -> list[str]:
-    conn = sqlite3.connect(f"file:{Path(path)}?mode=ro", uri=True)
+    conn = sqlite3.connect(f"file:{urllib.parse.quote(str(Path(path)))}?mode=ro", uri=True)
     try:
         return [r[0] for r in conn.execute(
             "SELECT name FROM sqlite_master WHERE type IN ('table','view') "
