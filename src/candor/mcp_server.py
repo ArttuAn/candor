@@ -158,6 +158,20 @@ def _server_class():
         ) from exc
 
 
+# Every candor tool reads files the caller passes in and returns a verdict. It
+# never writes, never takes an irreversible action, never talks to the network,
+# and answers the same way every time it is called with the same arguments.
+# Declaring that lets hosts warn before invoking, cache safely, and reject
+# tools that lie about their side effects.
+READ_ONLY_HINTS = {
+    "readOnlyHint": True,
+    "destructiveHint": False,
+    "idempotentHint": True,
+    "openWorldHint": False,
+    "title": "candor",
+}
+
+
 def build_server():
     server = _server_class()("candor", instructions=INSTRUCTIONS)
 
@@ -183,7 +197,7 @@ def build_server():
 
         return wrapped
 
-    @server.tool()
+    @server.tool(annotations=READ_ONLY_HINTS)
     @_guard
     def candor_assess(source: str, question: str, max_rows: int = 200_000,
                       table: str | None = None) -> dict:
@@ -209,7 +223,7 @@ def build_server():
             **_summarise_sufficiency(result),
         }
 
-    @server.tool()
+    @server.tool(annotations=READ_ONLY_HINTS)
     @_guard
     def candor_verify(source: str, draft_answer: str, question: str | None = None,
                       max_rows: int = 200_000, table: str | None = None) -> dict:
@@ -252,7 +266,7 @@ def build_server():
             ),
         }
 
-    @server.tool()
+    @server.tool(annotations=READ_ONLY_HINTS)
     @_guard
     def candor_profile(source: str, max_rows: int = 200_000,
                        table: str | None = None) -> dict:
@@ -269,7 +283,7 @@ def build_server():
         """
         return _summarise_profile(_profile(source, max_rows=max_rows, table=table))
 
-    @server.tool()
+    @server.tool(annotations=READ_ONLY_HINTS)
     @_guard
     def candor_improve(source: str, questions: list[str] | None = None,
                        max_rows: int = 200_000, table: str | None = None) -> dict:
@@ -307,7 +321,7 @@ def build_server():
             ],
         }
 
-    @server.tool()
+    @server.tool(annotations=READ_ONLY_HINTS)
     @_guard
     def candor_kit(source: str, question: str, max_rows: int = 200_000,
                    table: str | None = None) -> dict:
@@ -325,7 +339,7 @@ def build_server():
         """
         return _truth_kit(source, question, max_rows=max_rows, table=table)
 
-    @server.tool()
+    @server.tool(annotations=READ_ONLY_HINTS)
     @_guard
     def candor_spec_assess(source: str) -> dict:
         """Decide whether an app can be built from this spec without guessing.
@@ -346,7 +360,7 @@ def build_server():
         """
         return _summarise_spec(_assess_spec(source))
 
-    @server.tool()
+    @server.tool(annotations=READ_ONLY_HINTS)
     @_guard
     def candor_spec_resolve(source: str, answers: dict[str, str]) -> dict:
         """Re-assess a spec once the user has answered the open questions.

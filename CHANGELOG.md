@@ -6,6 +6,17 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- The MCP server now declares all four side-effect hints
+  (`readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`) on
+  every tool. Every candor tool is read-only: it reads a file the caller passes
+  and returns a verdict, never writes or takes an irreversible action, and
+  answers the same way every run — so the hints are `(true, false, true,
+  false)` and platforms that warn before invoking or cache by side effect now
+  know it. Hosts that reject tools with missing or non-boolean hints no longer
+  drop the whole server.
+
 ## [0.2.0] — 2026-09-19
 
 ### Changed

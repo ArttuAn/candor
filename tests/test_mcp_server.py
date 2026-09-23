@@ -29,6 +29,20 @@ EXPECTED_TOOLS = {
     "candor_spec_assess", "candor_spec_resolve",
 }
 
+HINTS = {"readOnlyHint", "destructiveHint", "idempotentHint", "openWorldHint"}
+
+
+def _hints(tool):
+    """The four side-effect hints as a client sees them on the wire (camelCase)."""
+    annotations = getattr(tool, "annotations", None)
+    if annotations is None:
+        return {}
+    return {
+        key: value
+        for key, value in annotations.model_dump(by_alias=True).items()
+        if key in HINTS and value is not None
+    }
+
 
 @pytest.mark.anyio
 async def test_the_advertised_tool_set_is_stable():
@@ -42,6 +56,23 @@ async def test_every_tool_documents_itself():
         assert tool.description and len(tool.description) > 80, tool.name
         schema = getattr(tool, "inputSchema", None) or getattr(tool, "input_schema", {})
         assert "source" in (schema.get("properties") or {}), tool.name
+
+
+@pytest.mark.anyio
+async def test_every_tool_declares_all_four_side_effect_hints():
+    # candor tools read the files the caller passes and return a verdict — never
+    # write, never take an irreversible action, never touch the network, always
+    # deterministic. Registers missing hints get rejected by directories such
+    # as OpenAI's, so every tool must carry an explicit value for all four.
+    for tool in await build_server().list_tools():
+        hints = _hints(tool)
+        assert hints, f"{tool.name} declares no side-effect annotations at all"
+        assert set(hints) == HINTS, f"{tool.name} is missing {HINTS - set(hints)}"
+        for name, value in hints.items():
+            assert type(value) is bool, f"{tool.name}.{name} must be a boolean, got {value!r}"
+        expected = {"readOnlyHint": True, "destructiveHint": False,
+                    "idempotentHint": True, "openWorldHint": False}
+        assert hints == expected, f"{tool.name} hints contradict the handler's behaviour"
 
 
 @pytest.mark.anyio
